@@ -49,9 +49,9 @@ const firstName = 'Tom';
 const lastName = 'Fuzer';
 console.log(firstName + ' ' + lastName);
 
-let x = 10 + 5; //15 
+let x = 10 + 5; //15
 x += 10; // x = x + 10
-x *= 4; // x = x * 4 
+x *= 4; // x = x * 4
 x++;
 x--;
 x--;
@@ -62,7 +62,7 @@ console.log(ageRafaela >= 25);
 
 const isFullAge = ageRafaela >= 25;
 
-console.log(now - 1995 > now - 1997) 
+console.log(now - 1995 > now - 1997)
 
 const now = 2022
 const ageTom = now - 1995;
@@ -106,7 +106,7 @@ if (height || height == 0) {
     console.log("Height foi definida");
 } else {
     console.log("Height nao foi definida");
-}*/
+}
 
 // Aula 22 operadores
 
@@ -114,7 +114,7 @@ const age = 18;
 
 if (age === 18)
     console.log("Maior de idade!")
-// === strict igualdade 18 === 18 
+// === strict igualdade 18 === 18
 // == igualdade com conversao '18' == 18 = true!
 
 const favourite = Number(prompt("What is your favorite number?"));
@@ -129,4 +129,66 @@ if (favourite === 23) { // '23' == 23 '23' != === 23;
 
 if (favourite !== 23) {
     console.log("Why not 23? ");
+}
+
+// Aula 24 - operadores logicos
+
+const hasDriversLicense = true;
+const hasGoodVision = true;
+
+console.log((hasDriversLicense && hasGoodVision));
+console.log((hasDriversLicense || hasGoodVision));
+console.log((!hasDriversLicense));
+
+const shouldDrive = (hasDriversLicense && hasGoodVision);
+
+if (shouldDrive) {
+    console.log("Sarah is able to drive")
+} else {
+    console.log("Someone else should drive!")
+}
+
+const isTired = true;
+
+console.log((hasDriversLicense || hasGoodVision || isTired));
+
+*/
+
+//desafio 3
+
+const scordeDolphins = (96 + 108 + 89) / 3;
+const scordeKoalas = (88 + 91 + 110) / 3;
+console.log(scordeDolphins, scordeKoalas);
+
+if (scordeDolphins > scordeKoalas) {
+    console.log("Dolphins Win");
+} else if (scordeKoalas > scordeDolphins) {
+    console.log("Koalas Win");
+} else if (scordeDolphins === scordeKoalas) {
+    console.log("DRAW!!!");
+}
+
+const scordeDolphinsBonus1 = (97 + 112 + 101) / 3;
+const scordeKoalasBonus1 = (109 + 95 + 123) / 3;
+console.log(scordeDolphinsBonus1, scordeKoalasBonus1);
+if (scordeDolphinsBonus1 > scordeKoalasBonus1 && scordeDolphinsBonus1 > 100) {
+    console.log("Dolphins Win");
+} else if (scordeKoalasBonus1 >= scordeDolphinsBonus1 && scordeKoalasBonus1 >= 100) {
+    console.log("Koalas Win");
+} else if (scordeDolphinsBonus1 === scordeKoalasBonus1 && scordeDolphinsBonus1 >= 100 && scordeKoalasBonus1 >= 100) {
+    console.log("DRAW!!!");
+}
+
+const scordeDolphinsBonus2 = (97 + 112 + 101) / 3;
+const scordeKoalasBonus2 = (109 + 95 + 106) / 3;
+console.log(scordeDolphinsBonus2, scordeKoalasBonus2);
+
+if (scordeDolphinsBonus2 > scordeKoalasBonus2 && scordeDolphinsBonus2 > 100) {
+    console.log("Dolphins Win");
+} else if (scordeKoalasBonus2 > scordeDolphinsBonus2 && scordeKoalasBonus2 >= 100) {
+    console.log("Koalas Win");
+} else if (scordeDolphinsBonus2 === scordeKoalasBonus2 && scordeDolphinsBonus2 >= 100 && scordeKoalasBonus2 >= 100) {
+    console.log("DRAW!!!");
+} else {
+    console.log("Ninguem ganhou!")
 }
