@@ -152,7 +152,6 @@ const isTired = true;
 
 console.log((hasDriversLicense || hasGoodVision || isTired));
 
-*/
 
 //desafio 3
 
@@ -192,3 +191,34 @@ if (scordeDolphinsBonus2 > scordeKoalasBonus2 && scordeDolphinsBonus2 > 100) {
 } else {
     console.log("Ninguem ganhou!")
 }
+
+// Aula 28
+
+const age = 23;
+
+// age >= 18 ? console.log('I like to drink wine') : console.log('I like to drink water');
+
+const drink = age >= 18 ? 'Wine' : 'Water';
+console.log(drink);
+
+let drink2;
+if (age >= 18) {
+    drink2 = 'Wine';
+} else {
+    drink2 = 'water';
+};
+
+console.log(drink2);
+
+console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}`);
+
+
+// desafio 4
+
+let tip;
+let bill;
+
+bill = 430;
+
+console.log(`The bill was ${bill}, the tip was ${tip = bill < 50 || bill > 300 ? bill * 0.20 : bill * 0.15}, and the total value ${bill + tip} `);
+*/
