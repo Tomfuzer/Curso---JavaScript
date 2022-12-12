@@ -215,10 +215,11 @@ console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}`);
 
 // desafio 4
 
+*/
+
 let tip;
 let bill;
 
-bill = 430;
+bill = 40;
 
 console.log(`The bill was ${bill}, the tip was ${tip = bill < 50 || bill > 300 ? bill * 0.20 : bill * 0.15}, and the total value ${bill + tip} `);
-*/
