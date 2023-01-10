@@ -1,4 +1,13 @@
 /*
+// Aula 11 - Assignments
+
+let country = "Brazil";
+let continent = "America do Sul";
+let population = 230000000;
+console.log(country);
+console.log(continent);
+console.log(population); 
+
 let js = 'amazing';
 console.log(40 + 8 + 23 - 10);
 
@@ -74,6 +83,114 @@ x = y = 25 - 10 - 5;
 console.log(x, y);
 const avarageAge = (ageTom + ageRafaela) / 2;
 console.log(ageTom, ageRafaela, avarageAge);
+
+//Challenge 1
+
+// const markWeights = 78;
+// const markHeight = 1.69;
+// const johnWeights = 92;
+// const johnHeight = 1.95;
+
+const markWeights = 95;
+const markHeight = 1.88;
+const johnWeights = 85;
+const johnHeight = 1.76;
+
+//BMI = mass / height**2 = mass / (height * height)
+
+let markBmi = markWeights / (markHeight * markHeight);
+console.log(markBmi);
+let johnBmi = johnWeights / (johnHeight * johnHeight);
+console.log(johnBmi);
+
+markBmi = markWeights / markHeight ** 2;
+console.log(markBmi);
+johnBmi = johnWeights / johnHeight ** 2;
+console.log(johnBmi);
+
+let markHigherBMI;
+
+markHigherBMI = (markBmi > johnBmi);
+console.log(markHigherBMI);
+//Aula 17 - Strings
+
+const firstName = "Jonas";
+const job = 'Teacher';
+const birthYear = 1991;
+const year = 2037;
+
+const jonas = "I'm " + firstName + ', a ' + (year - birthYear) + ' year old ' + job + '!';
+console.log(jonas);
+
+const jonasNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}!`;
+console.log(jonasNew);
+
+console.log(`Just a regular string...`);
+
+console.log('String with \n\
+multiple \n\
+lines');
+
+console.log(`String
+multiple
+lines`);
+
+//Aula 18 - If else 
+
+const age = 15;
+
+if (age >= 18) {
+    console.log('Sarah can start driving license🚗');
+} else {
+    const yearLeft = 18 - age;
+    console.log(`Sarah is too young. Wait another ${yearLeft} years :)`);
+}
+const birthYear = 2002;
+let century;
+
+if (birthYear <= 2000) {
+    century = 20;
+} else {
+    century = 21;
+}
+
+console.log(century);
+
+//Challenge 2
+
+// const markWeights = 78;
+// const markHeight = 1.69;
+// const johnWeights = 92;
+// const johnHeight = 1.95;
+
+const markWeights = 95;
+const markHeight = 1.88;
+const johnWeights = 85;
+const johnHeight = 1.76;
+
+//BMI = mass / height**2 = mass / (height * height)
+
+let markBmi = markWeights / (markHeight * markHeight);
+let johnBmi = johnWeights / (johnHeight * johnHeight);
+
+markBmi = markWeights / markHeight ** 2;
+console.log(markBmi);
+johnBmi = johnWeights / johnHeight ** 2;
+console.log(johnBmi);
+
+let markHigherBMI;
+
+if (markHigherBMI = (markBmi > johnBmi)) {
+    console.log(`Mark's BMI eh maior (${johnBmi}) `);
+} else {
+    console.log(`John's BMI eh maior (${johnBmi}) `);
+}
+
+/*if (markHigherBMI = (markBmi < johnBmi)) {
+    console.log(markBmi);
+} else {
+    console.log(johnBmi);
+}
 
 // Aula 20 conversao e coercao
 //conversao
@@ -225,7 +342,3 @@ bill = 40;
 console.log(`The bill was ${bill}, the tip was ${tip = bill < 50 || bill > 300 ? bill * 0.20 : bill * 0.15}, and the total value ${bill + tip} `);
 
 */
-
-
-
-
