@@ -372,4 +372,142 @@ if (mark.calcBmi() > john.calcBmi()) {
 } else if (john.calcBmi() > mark.calcBmi()) {
     console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s BMI (${mark.bmi})`)
 }
+
+
+// Aula 46 - Loop
+
+//For
+
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weights repetition ${rep}`);
+}
+
+
+
+// Aula 47 - Loop Arrays
+
+const tomArray = [
+    'Tom',
+    'Fuzer',
+    2022 - 1995,
+    'Gamer',
+    ['Rafael', 'Matheus', 'Nerd'],
+    true
+];
+
+const types = [];
+
+for (let i = 0; i < tomArray.length; i++) {
+    console.log(tomArray[i], typeof tomArray[i]);
+
+    // types[i] = typeof tomArray[i];
+    types.push(typeof tomArray[i]); // Lembrar as funções push, pop... de arrays do JS
+}
+
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+    ages.push(2037 - years[i]);
+}
+
+console.log(ages);
+
+//continue and break
+console.log('----ONLY STRING----')
+for (let i = 0; i < tomArray.length; i++) {
+    if (typeof tomArray[i] !== 'string') continue;
+    console.log(tomArray[i], typeof tomArray[i]);
+}
+
+//continue and break
+console.log('----BREAK WITH NUMBER----')
+for (let i = 0; i < tomArray.length; i++) {
+    if (typeof tomArray[i] === 'number') break;
+    console.log(tomArray[i], typeof tomArray[i]);
+}
+
+
+
+// Aula 48 - Loops in loops
+
+const tomArray = [
+    'Tom',
+    'Fuzer',
+    2022 - 1995,
+    'Gamer',
+    ['Rafael', 'Matheus', 'Nerd'],
+    true
+];
+
+for (let i = tomArray.length - 1; i >= 0; i--) {
+    console.log(i, tomArray[i]);
+}
+
+for (let exercise = 1; exercise < 4; exercise++) {
+    console.log(`----------------Starting exercise ${exercise}`);
+    for (let rep = 1; rep < 6; rep++) {
+        console.log(`Lifting wieght repetition ${rep}🏋️‍♂️`);
+    }
+
+}
+
+
+
+//Aula 49 - While
+
+
+// let rep = 1
+// while (rep <= 10) {
+//     console.log(`Lifting weights repetition ${rep}`);
+//     rep++;
+// }
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+// console.log(dice);
+while (dice !== 6) {
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log('Looping is about to end...');
+}
+
+
+
+// Challenge
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const total = [];
+let avg = 0;
+
+function tipsCalc(bill) {
+    if (bill < 50 || bill > 300) {
+        bill = bill * 0.20;
+        return bill;
+    } else {
+        bill = bill * 0.15;
+        return bill;
+    }
+}
+
+for (let i = 0; i < bills.length; i++) {
+    // tips[i] = tipsCalc(bills[i]);
+    // total[i] = tips[i] + bills[i];
+    tips.push(tipsCalc(bills[i]));
+    total.push(tips[i] + bills[i]);
+    console.log(`${i + 1} - Valor da conta ${bills[i]}, valor da gorjeta ${tips[i]}, total ${total[i]}`);
+}
+
+function calcAvg(total) {
+    for (let i = 0; i < total.length; i++) {
+        avg = avg + total[i];
+    }
+    avg = avg / total.length;
+    console.log(`O valor medio da soma de todas as contas eh ${avg} `);
+
+}
+
+calcAvg(total);
 */
