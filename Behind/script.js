@@ -119,4 +119,61 @@ rafaela.calcAge = tom.calcAge; //copiando um atributo/metodo de um objeto para o
 rafaela.calcAge();
 const f = tom.calcAge;
 // f();
+
+
+// Aula 98 - Regular functions != Arrow functions
+
+// var firstName = 'Rafaela'; // var cria variavel dentro do obj global window
+
+const tom = {
+  firstName: 'Tom',
+  year: 1995,
+  calcAge: function () {
+    // console.log(this);
+    console.log(2022 - this.year);
+    //Solucao 1
+    // const self = this; // this dentro de regular function eh undefined, para preservar a logica do this criamos a variavel self e atribuimos o valor this a ela. self or that!
+    // const isMillenial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    //   //   console.log(this.year >= 1981 && this.year <= 1996);
+    // };
+
+    //Solucao 2
+    //Usar ArrowFunction porque ela vai usar o this do "PAI" a qual ela pertence, neste caso o objeto tom
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+
+    isMillenial();
+  },
+  greet: () => console.log(`Hey ${this.firstName}`), //this dentro do global scope, ou seja, this = window
+  //Nao usar arrowFunction como metodo
+
+  //   greet: function () {
+  //     console.log(`Hey ${this.firstName}`);
+  //   },//Regular function
+};
+
+tom.greet();
+tom.calcAge();
+
+//arguments keyword
+
+var addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
+
+var addArrow = (a, b) => {
+  // Arrow functions nao possuem arguments
+  console.log(arguments);
+  return a + b;
+};
+
+addArrow(2, 5, 8);
 */
