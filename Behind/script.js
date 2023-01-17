@@ -81,4 +81,42 @@ console.log(x === window.x);
 console.log(y === window.y);
 console.log(z === window.z);
 
+
+// Aula 96/97 - This
+
+// console.log(this);
+
+const calcAge = function (birthYear) {
+  //   console.log(2022 - birthYear);
+  //   console.log(this);
+};
+
+calcAge(1995);
+
+//Arrow function nao tem this keyword
+const calcAgeArrow = birthYear => {
+  //   console.log(2022 - birthYear);
+  //   console.log(this);
+};
+
+calcAgeArrow(1980);
+
+const tom = {
+  year: 1995,
+  calcAge: function () {
+    console.log(this);
+    console.log(2022 - this.year);
+  },
+};
+
+tom.calcAge();
+
+const rafaela = {
+  year: 1997,
+};
+
+rafaela.calcAge = tom.calcAge; //copiando um atributo/metodo de um objeto para outro, neste caso uma func.
+rafaela.calcAge();
+const f = tom.calcAge;
+// f();
 */
