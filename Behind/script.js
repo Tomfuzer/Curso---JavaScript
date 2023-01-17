@@ -177,3 +177,58 @@ var addArrow = (a, b) => {
 
 addArrow(2, 5, 8);
 */
+
+// Aula 99/100 - Primitives vs Objects
+
+// let age = 27;
+// let oldAge = age;
+// age = 28;
+
+// console.log(age);
+// console.log(oldAge);
+
+// const me = {
+//   name: 'Tom',
+//   age: 30,
+// };
+
+// const friend = me;
+// friend.age = 25;
+// console.log('Friend', friend);
+// console.log('Me', me);
+
+//Primitive types
+let lastName = 'Viana';
+let oldLastName = lastName;
+lastName = 'Oliveira';
+console.log(lastName, oldLastName);
+
+//References types
+const rafaela = {
+  firstName: 'Rafaela',
+  lastName: 'Viana',
+  age: 25,
+};
+
+const casadaRafaela = rafaela; // NÃO copia o valores do objeto rafaela para o objeto casadaRafaela, simplesmente copia o valor do endereço de memoria, ou seja, ambos os objetos apontam para o mesmo endereço!!!
+casadaRafaela.lastName = 'Oliveira';
+console.log('Antes de casar:', rafaela);
+console.log('Depois de casar:', casadaRafaela);
+
+//casadaRafaela = {}; Não funciona!!! pois como o objeto foi criado com const eu não posso mudar o valor dele, ou seja, não posso mudar o que ele referencia, que neste caso é o endereço de memória do objeto rafaela.
+
+// Copying objects
+const rafaela2 = {
+  firstName: 'Rafaela',
+  lastName: 'Viana',
+  age: 25,
+  family: ['Miguel', 'Gabriela'],
+};
+
+const rafaelaCopy = Object.assign({}, rafaela2); // Com a func Objetc.assign eu copio um objeto para um novo!!! obs: Apenas copia a primeira camada de um objeto, nao copia objetos que estão dentro de outros objetos, estes continuam sendo referenciados, ou seja, mudar o valor em um mudará no outro, para isso eu precisaria copiar como um 'Deep Clone'.
+rafaelaCopy.lastName = 'Oliveira';
+console.log('Antes de casar:', rafaela2);
+console.log('Depois de casar:', rafaelaCopy);
+
+rafaelaCopy.family.push('Arthur');
+rafaelaCopy.family.push('Fellipe');
