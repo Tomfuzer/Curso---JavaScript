@@ -34,8 +34,8 @@ const firstName = 'Tom';
 calcAge(1995);
 // console.log(age);
 // printAge();
-*/
-//Aula 95 - Hosting
+
+//Aula 95 - Hoisting
 
 //Variaveis
 // console.log(me);
@@ -62,7 +62,7 @@ var addExpr = function (a, b) {
 var addArrow = (a, b) => a + b;
 
 //Example
-//Bug por conta do Hosting, numProducts inicializou com undefined!!!
+//Bug por conta do Hoisting, numProducts inicializou com undefined!!!
 
 console.log(numProducts);
 if (!numProducts) deleteShopppingCart();
@@ -80,3 +80,5 @@ const z = 3;
 console.log(x === window.x);
 console.log(y === window.y);
 console.log(z === window.z);
+
+*/
