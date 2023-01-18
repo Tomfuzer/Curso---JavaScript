@@ -26,6 +26,13 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Aqui esta o seu delicioso macarrão com ${ing1}, ${ing2} e ${ing3}`
+    );
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -41,6 +48,60 @@ const restaurant = {
     },
   },
 };
+
+/*
+// Aula 105 - Spread Operator (...)
+
+const arr = [7, 8, 9];
+const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArray);
+
+const newArr = [1, 2, ...arr]; // != [1,2, arr]
+// console.log(newArr);
+
+// console.log(...newArr);
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci']; // Adicionando um valor ao array (sintax ...'nome do array', 'valor')
+// console.log(newMenu);
+
+//Copy array
+
+const mainMenuCopy = [...restaurant.mainMenu];
+
+//Join 2 arrays or more
+
+const completeMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(completeMenu);
+
+//Iterables: arrays, stirngs, maps, sets, NOT objects
+
+const str = 'Tom';
+const letras = [...str, '', 'S.'];
+// console.log(letras);
+// console.log(...str);
+// console.log('T', 'o');
+
+//Real world example
+const ingredients = [
+  // prompt('Lets make pasta! Ingredients 1?'),
+  // prompt('Ingredients 2?'),
+  // prompt('Ingredients 3?'),
+];
+console.log(ingredients);
+
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]); old way
+restaurant.orderPasta(...ingredients); // new way
+
+//Objects
+
+const newRestaurant = { foundedIn: 2023, ...restaurant, founder: 'Tom Fuzer' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Tom Fuzer Macarronaria kkkk';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
+*/
 
 /*
 
