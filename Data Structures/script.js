@@ -54,6 +54,84 @@ const restaurant = {
   },
 };
 
+/**/
+
+//Challenge 1
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// console.log(game);
+
+const [bayernPlayers, borrussiaPlayers] = [game.players[0], game.players[1]];
+const allPlayers = [...bayernPlayers, ...borrussiaPlayers];
+console.log(allPlayers);
+// console.log(bayernPlayers);
+// console.log(borrussiaPlayers);
+
+let bayerField = [];
+let bayernGk;
+let borrussiaField = [];
+let borrussiaGk;
+
+for (let i = 0; i < bayernPlayers.length; i++) {
+  if (i === 0) {
+    bayernGk = bayernPlayers[i];
+  } else {
+    bayerField.push(bayernPlayers[i]);
+  }
+}
+console.log(bayernGk);
+console.log(bayerField);
+
+for (let i = 0; i < borrussiaPlayers.length; i++) {
+  if (i === 0) {
+    borrussiaGk = borrussiaPlayers[i];
+  } else {
+    borrussiaField.push(borrussiaPlayers[i]);
+  }
+}
+console.log(borrussiaGk);
+console.log(borrussiaField);
+
 /*
 
 //Aula 109 - Logical Assignment Operators
