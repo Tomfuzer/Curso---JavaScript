@@ -54,6 +54,38 @@ const restaurant = {
   },
 };
 
+/**/
+// Aula 108 - Nullish Coalescing Operator
+
+/*
+// Aula 107 - && and ||
+console.log('------------OR------------');
+//Use any data type, return any data type, shot-circuiting
+console.log(3 || 'Tom');
+console.log('' || 'Tom');
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+console.log('------------AND------------');
+console.log(0 && 'Tom');
+console.log(7 && 'Tom');
+
+console.log('Hello' && 23 && null && 'Tom');
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('Calabresa', 'Catupiry');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('Calabresa', 'Cream Cheese');
+*/
+
 /*
 // Aula 106 - Rest Pattern and Parameters
 
