@@ -54,7 +54,43 @@ const restaurant = {
   },
 };
 
-/**/
+/*
+
+//Aula 109 - Logical Assignment Operators
+
+const rest1 = {
+  name: 'TomRest',
+  // numGuests: 20,
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'TomRest',
+  owner: 'Hamilton Fuzer',
+};
+//OR assignment operator
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+//nullish assignment operator (null or undefined)
+//??= se o valor verificador for nulo ou undefined, no exemplo acima com ||= ele verificar se o valor é falso, 0 é falso mas é o valor real então deve ser preservado
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+//AND assignment operator
+// rest2.owner = rest2.owner && '<ANONIMO>';
+// rest1.owner = rest1.owner && '<ANONIMO>';
+rest1.owner &&= '<ANONIMO>';
+rest2.owner &&= '<ANONIMO>';
+
+console.log(rest1);
+console.log(rest2);
+*/
+
+/*
 // Aula 108 - Nullish Coalescing Operator
 
 restaurant.numGuests = 0;
@@ -64,6 +100,7 @@ console.log(guests);
 // Nullish: null and undefined (NOT 0 or '')
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
+*/
 
 /*
 // Aula 107 - && and ||
