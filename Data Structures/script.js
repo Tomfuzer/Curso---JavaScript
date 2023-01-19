@@ -97,40 +97,48 @@ const game = {
     x: 3.25,
     team2: 6.5,
   },
+
+  printGoals: function (...players) {
+    // console.log(players);
+    // for (let i = 0; i < players.length; i++) {
+    console.log(`Foram marcados ${players.length} gols`);
+    // }
+  },
 };
 
 // console.log(game);
 
-const [bayernPlayers, borrussiaPlayers] = [game.players[0], game.players[1]];
-const allPlayers = [...bayernPlayers, ...borrussiaPlayers];
-console.log(allPlayers);
-// console.log(bayernPlayers);
-// console.log(borrussiaPlayers);
+// const [bayernPlayers, borrussiaPlayers] = [game.players[0], game.players[1]];
+const [bayernPlayers, borrussiaPlayers] = game.players;
+console.log(bayernPlayers);
+console.log(borrussiaPlayers);
 
-let bayerField = [];
-let bayernGk;
-let borrussiaField = [];
-let borrussiaGk;
-
-for (let i = 0; i < bayernPlayers.length; i++) {
-  if (i === 0) {
-    bayernGk = bayernPlayers[i];
-  } else {
-    bayerField.push(bayernPlayers[i]);
-  }
-}
+const [bayernGk, ...bayerField] = bayernPlayers; // REST SINTAX!!! - bayernPlayers é o array completo, o fato de utilizar o ...bayerField informa ao JS que todo o conteudo restante do array deve ser armazenado neste novo array (bayerField) criado
 console.log(bayernGk);
 console.log(bayerField);
 
-for (let i = 0; i < borrussiaPlayers.length; i++) {
-  if (i === 0) {
-    borrussiaGk = borrussiaPlayers[i];
-  } else {
-    borrussiaField.push(borrussiaPlayers[i]);
-  }
-}
+const [borrussiaGk, ...borrussiaField] = borrussiaPlayers;
 console.log(borrussiaGk);
 console.log(borrussiaField);
+
+const allPlayers = [...bayernPlayers, ...borrussiaPlayers];
+console.log(allPlayers);
+
+const substitute = ['Thiago', 'Coutinho', 'Perisic'];
+// console.log(substitute);
+const bayernPlayersFinal = [...bayernPlayers, ...substitute]; // separei todos os valores dos dois arrays em valores 'individuais' para criar um único array com todos os valores e não concatenar
+console.log(bayernPlayersFinal);
+
+//Objects
+const { team1, x: draw, team2 } = game.odds; // Pra receber o conteúdo das variaveis do objeto dentro de outro objeto eu preciso usar o mesmo nome, caso contrario o JavaScript não sabe como referenciar... posso após a referencia trocar o nome como foi feito no x com a sintaxe "x: 'nomeDesajado'" dessa forma referencio o que quero buscar e já defino um novo nome pra variavel
+// console.log(weekdays);
+console.log(team1, draw, team2);
+
+game.printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
+game.printGoals(...game.scored);
+
+team1 < team2 && console.log('Team 1 is more likely to win');
+team2 < team1 && console.log('Team 2 is more likely to win');
 
 /*
 
