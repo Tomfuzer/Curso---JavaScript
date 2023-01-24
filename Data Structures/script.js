@@ -62,6 +62,51 @@ const restaurant = {
 };
 
 /*
+//Aula 118 - Maps Iteration
+
+const question = new Map([
+  ['question', 'Whats the best programming language in the world'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try Again'],
+]);
+
+console.log(question);
+console.log(Object.entries(openingHours));
+//Criando um map a partir de um objeto
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+//Posso converter um objeto em um mapa usando Object.entries, dessa forma posso usar o map no looping como no exemplo abaixo pois o struct maps é iterable
+
+//Quiz app
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+const answer = 3;
+//Number(prompt('Your answer'));
+
+console.log(answer);
+
+// if (answer === question.get('correct')) {
+//   console.log(question.get(true));
+// } else {
+//   console.log(question.get(false));
+// } // versão Tom
+
+console.log(question.get(answer === question.get('correct')));
+
+//Converter map to array
+console.log([...question]);
+// console.log(question.entries());
+console.log([...question.keys()]);
+console.log([...question.values()]);
+*/
+
+/*
 // Aula 117 - Maps
 
 const rest = new Map();
