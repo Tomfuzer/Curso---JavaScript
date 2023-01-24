@@ -60,6 +60,122 @@ const restaurant = {
   //ES6 enhanced object literals
   openingHours,
 };
+/*
+//Aula 116 - Sets
+
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(orderSet);
+// console.log(new Set('Jonas'));
+console.log(orderSet.size);
+console.log(orderSet.has('Pizza'));
+// console.log(orderSet.has('Tom'));
+orderSet.add('Garlic Bread');
+orderSet.add('Garlic Bread');
+orderSet.delete('Risotto');
+// orderSet.clear();
+console.log(orderSet);
+
+for (const order of orderSet) console.log(order);
+
+//Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+console.log(new Set('hamiltonfuzerdeoliveira').size);
+*/
+
+/*
+//Aula 115 - Coding Challenge #2
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+
+  printGoals: function (...players) {
+    // console.log(players);
+    // for (let i = 0; i < players.length; i++) {
+    console.log(`Foram marcados ${players.length} gols`);
+    // }
+  },
+};
+
+// console.log(game.scored);
+const ordem = Object.keys(game.scored);
+// console.log(ordem);
+const marcadores = Object.values(game.scored);
+// console.log(marcadores);
+const entries = Object.entries(game.scored);
+// console.log(entries);
+
+for (const [key, values] of entries) {
+  console.log(`Goal ${Number(key) + 1}: ${values}`);
+}
+
+const oddsEntries = Object.entries(game.odds);
+// console.log(oddsEntries);
+const oddsValues = Object.values(game.odds);
+// console.log(oddsValues);
+// const oddsKeys = Object.keys(game.odds);
+// console.log(oddsKeys);
+
+let avgOdd = 0;
+for (const values of oddsValues) {
+  // console.log(values);
+  avgOdd += values;
+}
+console.log(avgOdd / oddsEntries.length);
+
+//Usar a sintaxe game[key] pra referencia o game.team1 e trazer o nome correto do time - ?? notação pra verificar nullish, caso do draw e então inserir o texto correto.
+for (const [key, values] of oddsEntries) {
+  console.log(`Odd of victory ${game[key] ?? 'draw'}: ${values}`);
+}
+*/
 
 /*
 // Aula 114 - Looping Objects: Objects keys, values and entries.
