@@ -1,10 +1,28 @@
 'use strict';
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  //ES6 feature
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+/*
 // Data needed for a later exercise
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
 // Data needed for first part of the section
+*/
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -12,7 +30,8 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order: function (starterIndex, mainIndex) {
+  //ES6 new function declaration method
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
   orderDelivery: function ({
@@ -38,23 +57,55 @@ const restaurant = {
     console.log(otherIngridients);
   },
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  //ES6 enhanced object literals
+  openingHours,
 };
+/*
+//Aula 113 - Optional Chaining
 
-/**/
+// if (restaurant.openingHours && restaurant.openingHours.mon)
+// console.log(restaurant.openingHours.mon.open);
+
+// WITH optional chaining
+// console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours?.mon?.open);
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of days) {
+  // console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`);
+  //restaurant.openingHours.(o que eu quero acessar) para acessar algo via parametro como no exemplo acima em que pegamos o valor do array e usamos, a sintaxe correta é' restaurant.openingHours[]...
+}
+
+//Methods
+
+console.log(restaurant.order?.(0, 1) ?? 'Method dos not exist');
+console.log(restaurant.orderRisoto?.(0, 1) ?? 'Method dos not exist');
+
+//Arrays
+
+const users = [{ name: 'Tom', email: 'tomfuzer@gmail.com' }];
+// const users = [];
+
+console.log(users[0]?.name ?? 'User array empty');
+*/
+
+/*
+// Aula 111 - For-of loop
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+// console.log([...menu.entries()]);
+*/
+
+/*
 
 //Challenge 1
 
@@ -139,6 +190,8 @@ game.printGoals(...game.scored);
 
 team1 < team2 && console.log('Team 1 is more likely to win');
 team2 < team1 && console.log('Team 2 is more likely to win');
+
+*/
 
 /*
 
@@ -331,7 +384,7 @@ restaurant.orderDelivery({
   starterIndex: 1,
 });
 
-//Desestruturando um objeto
+//Desestruturando um objeto - O nome da variavel referenciada tem que ser igual ao do objeto. OBS: é possível renomear após referenciar
 const { name, openingHours, categories } = restaurant;
 // console.log(name, openingHours, categories);
 
@@ -374,7 +427,7 @@ const a = arr[0];
 const b = arr[1];
 const c = arr[2];
 
-const [x, y, z] = arr;
+const [x, y, z] = arr; // Sintax [] cada variavel dentro da sintax sera um elemento da arry. Quando [] a esquerda da = o JS já sabe que é pra desestruturar
 console.log(x, y, z);
 console.log(arr);
 
