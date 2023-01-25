@@ -62,6 +62,47 @@ const restaurant = {
 };
 
 /*
+//Aula 121 - Stirngs P1
+
+const airLine = 'TAP Air Portugal';
+const plane = 'A320';
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log('B737'[0]);
+// console.log(airLine.length);
+// console.log('B737'.length);
+// console.log(airLine.indexOf('r'));
+// console.log(airLine.lastIndexOf('r'));
+// console.log(airLine.lastIndexOf('Portugal'));
+
+console.log(airLine.slice(4));
+console.log(airLine.slice(4, 7));
+
+console.log(airLine.slice(0, airLine.indexOf(' ')));
+console.log(airLine.slice(airLine.lastIndexOf(' ') + 1));
+
+console.log(airLine.slice(-2)); // começa do final
+console.log(airLine.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  //B e E are middle seat
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got middle seat =/');
+  else console.log('You got luck! ');
+};
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('Tom'));
+console.log(typeof new String('Tom'));
+
+console.log(typeof new String('Tom').slice(1));
+*/
+
+/*
 //Aula 120 - Challenge #3
 
 const gameEvents = new Map([
@@ -296,6 +337,24 @@ console.log(avgOdd / oddsEntries.length);
 for (const [key, values] of oddsEntries) {
   console.log(`Odd of victory ${game[key] ?? 'draw'}: ${values}`);
 }
+
+// BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+//       {
+//         Gnarby: 1,
+//         Hummels: 1,
+//         Lewandowski: 2
+//       }
+
+const scorers = {
+  [game.scored[1]]: 1,
+  [game.scored[3]]: 1,
+  [game.scored[0]]: 2,
+};
+
+console.log(scorers);
+
+// console.log(game.scored[3]);
+
 */
 
 /*
