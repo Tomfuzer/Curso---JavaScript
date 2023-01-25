@@ -61,11 +61,62 @@ const restaurant = {
   openingHours,
 };
 
+//Aula 123 - String P3
 //Aula 122 - String P2
 //Aula 121 - Stirngs P1
 
 const airLine = 'TAP Air Portugal';
 const plane = 'A320';
+
+//Split and Join
+// console.log('a+very+nice+string'.split('+')); //Separar string
+// console.log('Hamilton Fuzer'.split(' '));
+
+const [firstName, lastName] = 'Hamilton Fuzer'.split(' ');
+
+const newName = ['Mr.', firstName, lastName.toLocaleUpperCase()].join(' ');
+// console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase())); //troca o primeiro caracter pelo primeiro caracter uppercase
+  }
+  console.log(namesUpper.join(' '));
+};
+
+const passenger = 'rafaela fabricio viana';
+
+// capitalizeName(passenger);
+// capitalizeName('hamilton fuzer de oliveira');
+
+//Padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(30, '+'));
+console.log('Tomfuzer'.padStart(25, '+').padEnd(30, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(8859365988541857));
+console.log(maskCreditCard(5968996322514459));
+
+//Repeat
+const message2 = 'Bad weather... All departues delayed... ';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
+};
+
+planesInLine(3);
+planesInLine(5);
+planesInLine(7);
 
 // console.log(airLine.toLocaleLowerCase());
 // console.log(airLine.toLocaleUpperCase());
