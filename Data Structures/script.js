@@ -16,13 +16,7 @@ const openingHours = {
     close: 24,
   },
 };
-/*
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-// Data needed for first part of the section
-*/
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -91,10 +85,12 @@ Afterwards, test with your own test data!
 
 */
 
-document.body.append(document.createElement('textarea')); //criar a caixa de texto
-document.body.append(document.createElement('button')); //criar button
+/*
 
 //func addEventListener do tipo click atrelada ao button (doc.querySelector('button))
+// document.body.append(document.createElement('textarea')); //criar a caixa de texto
+// document.body.append(document.createElement('button')); //criar button
+
 document.querySelector('button').addEventListener('click', function () {
   const text = document.querySelector('textarea').value;
   const textLower = text.toLowerCase();
@@ -107,19 +103,45 @@ document.querySelector('button').addEventListener('click', function () {
   for (let i = 0; i < variaveis.length; i++) {
     // console.log(variaveis[i]);
     let remove = variaveis[i].indexOf('_');
+    let inic = variaveis[i].slice(0, remove);
+    let fim = variaveis[i].slice(remove + 2);
+    let fimLetra = variaveis[i].slice(remove + 1);
+    fimLetra = fimLetra[0].replace(fimLetra[0], fimLetra[0].toUpperCase());
+    // console.log(inic);
+    // console.log(fimLetra);
+    let join = inic + fimLetra + fim;
+    let joinNoSpace = join.trim();
+    console.log(`${joinNoSpace.padEnd(20)} ${'✅'.repeat(i + 1)}`);
+    // console.log(join);
     // console.log(remove);
-    let alt = variaveis[i][remove + 1].toUpperCase();
-    // console.log(alt);
-    let final = variaveis[i].replace('_', '');
-    console.log(final);
 
-    // replaceVar.push(final.replace(final[remove], alt));
-    // console.log(replaceVar[i]);
-
-    replaceVar.push(final.splice(remove, 1, alt));
-    console.log(replaceVar[i]);
+    replaceVar.push(joinNoSpace);
   }
+  console.log(replaceVar);
 });
+*/
+
+/*
+// Aula 125 - Strings Patrice
+
+// Data needed for a later exercise
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// console.log(flights.split('+'));
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${type.startsWith('_Delayed') ? '⛔' : ''} ${type.replaceAll(
+    '_',
+    ' '
+  )} ${getCode(from)} to ${getCode(to)} (${time.replace(':', 'h')})`.padStart(
+    35
+  );
+  console.log(output);
+}
+*/
 
 /*
 //Aula 123 - String P3
