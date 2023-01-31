@@ -286,3 +286,25 @@ poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
 // console.log(isPrivate);
 console.log(notPrivate);
 */
+
+// Aula 137
+/*
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+//secureBooking vai retornar uma função, essa função será armazenada na const booker!!!
+//booker é uma função
+const booker = secureBooking();
+//closure, a função continua com acesso ao contexto no qual ela foi criada, podendo acessar as variáveis presentes nele por exemplo
+booker();
+booker();
+booker();
+
+console.dir(booker);
+*/
