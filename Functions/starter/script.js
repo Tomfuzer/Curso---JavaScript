@@ -262,3 +262,27 @@ poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
 */
 
 // Aula 136
+
+/*
+// const runOnce = function () {
+//   console.log('this will never run again');
+// };
+
+//IIFE
+(function () {
+  console.log('this will never run again');
+  const isPrivate = 23; //encapsulamento
+})();
+
+// console.log(isPrivate); //Não funciona
+
+(() => console.log('this will ALSO never run again'))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46; // var ... = ignora scope
+}
+
+// console.log(isPrivate);
+console.log(notPrivate);
+*/
