@@ -71,7 +71,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -122,3 +122,38 @@ console.log('tomfuzer'.at(0)); //at funciona em strings
 */
 
 // Aula 144
+/*
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const movement of movements) {
+// for (const [i, movement] of movements.entries()) {
+//   if (movement > 0) {
+//     console.log(`Movimento ${i + 1}: Você depositou ${movement}`);
+//   } else {
+//     console.log(`Movimento ${i + 1}: Você sacou ${Math.abs(movement)}`);
+//   }
+// }
+
+// //forEach
+// movements.forEach(function (movement, index, array) {
+//   if (movement > 0) {
+//     console.log(`Movimento ${index + 1}: Você depositou ${movement}`);
+//   } else {
+//     console.log(`Movimento ${index + 1}: Você sacou ${Math.abs(movement)}`);
+//   }
+// });
+//0: function(200)
+//1: function(450)
+//2: function(-400)
+//3: function(3000)
+
+// let tom = [1, 2, 3, 4, 5];
+
+// tom.forEach(function (valores, index, array) {
+//   console.log(
+//     `Valor nesta iteração: ${valores} -- Index nesta iteração: ${index} -- Vetor? nesta iteração: ${array}`
+//   );
+// });
+*/
+
+// Aula 145
