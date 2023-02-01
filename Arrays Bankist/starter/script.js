@@ -74,3 +74,35 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// Aula 142
+/*
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// console.log(arr.slice(2)); //começa na posição informada
+// console.log(arr.slice(2, 4)); // o último parâmetro não é acessado, 2,4 vai do 2 ao 3
+// console.log(arr.slice(-2));
+// console.log(arr.slice(-1));
+// console.log(arr.slice(1, -2));
+// console.log(arr.slice()); //copia o array
+
+//splice
+// console.log(arr.splice(2)); // modifica o array original
+// arr.splice(-1); //remove o último elemento do array
+// arr.splice(1, 2);
+// console.log(arr);
+
+//reverse
+let arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse()); // reverse modifica o array original
+console.log(arr2);
+
+//concat
+
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]); // não modifica os arrays
+
+//join
+console.log(letters.join(' - '));
+*/
