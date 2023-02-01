@@ -79,6 +79,21 @@ const displayMoviments = function (mov) {
 };
 displayMoviments(account1.movements); // chamou a função displayMoviments que fez a inserção no HTML com as informações específicas da account1
 
+// Aula 151
+// users
+
+const creatUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner //criou um atributo que não existia
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0]) //arrow func
+      .join('');
+  });
+};
+creatUsernames(accounts);
+console.log(account1);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -210,7 +225,7 @@ TEST DATA 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
 TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
-*/
+
 
 const julia = [3, 5, 2, 12, 7];
 const juliab = [9, 16, 6, 8, 3];
@@ -239,3 +254,45 @@ const checkDog = function (arr, arr2) {
 
 // checkDog(julia, kate);
 checkDog(juliab, kateb);
+*/
+
+// Aula 149
+
+// Aula 150
+/*
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+
+//Retorna um novo array e não modifica o parâmetro
+const movementsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+
+const movementsUSDfor = [];
+for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+// console.log(movements);
+// console.log(movementsUSD);
+console.log(movementsUSDfor);
+
+const movementsUSDarrow = movements.map(mov => mov * eurToUsd);
+
+console.log(movementsUSDarrow);
+
+const movDescription = movements.map(
+  (mov, i) =>
+    `Movimento ${i + 1}: Você ${mov > 0 ? 'depositou' : 'sacou'} ${Math.abs(
+      mov
+    )}`
+);
+
+// if (mov > 0) {
+//   return `Movimento ${i + 1}: Você depositou ${mov}`;
+// } else {
+//   return `Movimento ${i + 1}: Você sacou ${Math.abs(mov)}`;
+// }
+
+console.log(movDescription);
+*/
+
+// Aula 152
