@@ -106,3 +106,19 @@ console.log([...arr, ...arr2]); // não modifica os arrays
 //join
 console.log(letters.join(' - '));
 */
+
+// Aula 143
+/*
+const arr = [23, 11, 64];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+//Último elemento do array
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+console.log(arr.at(-1));
+
+console.log('tomfuzer'.at(0)); //at funciona em strings
+*/
+
+// Aula 144
