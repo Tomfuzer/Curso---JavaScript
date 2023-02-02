@@ -351,3 +351,35 @@ console.log(max);
 */
 
 // Aula 154 - Code Challenge #2
+
+/*
+const data1 = [5, 2, 4, 1, 15, 8, 3];
+const data2 = [1, 6, 10, 5, 6, 1, 4];
+
+function calcHumanAge(ages) {
+  const humanAge = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  const adults = humanAge.filter(age => age >= 18);
+  console.log(humanAge);
+  console.log(adults);
+
+  // const avg = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  const avg = adults.reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+  return avg;
+}
+
+function avgAge(arr) {
+  const avg =
+    arr.reduce(function (acc, cur) {
+      return acc + cur;
+    }, 0) / arr.length;
+  return avg;
+}
+
+console.log(avgAge([36, 32, 76, 48, 28]));
+
+// const abc = calcHumanAge(data1);
+// console.log(abc);
+*/
+
+// Aula 155 -
