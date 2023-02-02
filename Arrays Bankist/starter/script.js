@@ -63,6 +63,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 //Projeto Banco
 
+//Movimentações - calcular e exibir
 const displayMoviments = function (mov) {
   containerMovements.innerHTML = '';
 
@@ -78,6 +79,12 @@ const displayMoviments = function (mov) {
   });
 };
 displayMoviments(account1.movements); // chamou a função displayMoviments que fez a inserção no HTML com as informações específicas da account1
+//Balanço - calcular e exibir
+const calcDisplayBalance = function (mov) {
+  const balance = mov.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} BRL`; // inserir a informação no html/webpage
+};
+calcDisplayBalance(account1.movements); // Chamando a função displayBalance
 
 // Aula 151
 // users
@@ -92,7 +99,7 @@ const creatUsernames = function (accs) {
   });
 };
 creatUsernames(accounts);
-console.log(account1);
+// console.log(account1);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -296,3 +303,51 @@ console.log(movDescription);
 */
 
 // Aula 152
+/*
+const deposits = account1.movements.filter(function (mov) {
+  return mov > 0;
+}); // usando a função filter pra retornar apenas os valores > 0 -- Lembrando que a func filter recebe um vetor como parâmetro e já cria um novo vetor de acordo com as regras estabelecidas
+
+console.log(account1.movements);
+console.log(deposits);
+
+const depositsFor = [];
+for (const mov of account1.movements) if (mov > 0) depositsFor.push(mov);
+
+console.log(depositsFor);
+
+const withdrawals = account1.movements.filter(mov => mov < 0); // usando a função filter pra retornar apenas os valores < 0 com arrow function
+console.log(withdrawals);
+*/
+
+// Aula 153
+/*
+console.log(account1.movements);
+
+//reduce acc = acumulator = snowball
+// const balance = account1.movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteração n°: ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+// console.log(balance);
+const balance = account1.movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of account1.movements) balance2 += mov;
+console.log(balance2);
+//
+//Maximum value
+const max = account1.movements.reduce(function (acc, cur) {
+  if (cur > acc) {
+    acc = cur;
+  } else {
+    return acc;
+  }
+  return acc;
+}, account1.movements[0]);
+
+console.log(max);
+*/
+
+// Aula 154 - Code Challenge #2
