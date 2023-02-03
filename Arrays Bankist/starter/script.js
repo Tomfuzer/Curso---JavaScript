@@ -78,27 +78,29 @@ const displayMoviments = function (mov) {
     containerMovements.insertAdjacentHTML('afterbegin', html); // parametros de insertAdjacentHTML('aonde colocar', 'o que colocar')
   });
 };
-displayMoviments(account1.movements); // chamou a função displayMoviments que fez a inserção no HTML com as informações específicas da account1
+//displayMoviments(account1.movements); // chamou a função displayMoviments que fez a inserção no HTML com as informações específicas da account1
 //Balanço - calcular e exibir
 const calcDisplayBalance = function (mov) {
   const balance = mov.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} BRL`; // inserir a informação no html/webpage
 };
-calcDisplayBalance(account1.movements); // Chamando a função displayBalance
+//calcDisplayBalance(account1.movements); // Chamando a função displayBalance
 
 //Função pra inserir os valores do summary, in, out e interest -- Sempre verificar a qual objeto do HTML a função está referenciando, dessa forma é mais fácil compreender o que ela deve mostrar/fazer.
-const calcDisplaySummary = function (mov) {
-  const incomes = mov.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}R$`;
 
-  const outcomes = mov
+  const outcomes = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outcomes)}R$`;
 
-  const interest = mov
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposite => (deposite * 1.2) / 100)
+    .map(deposite => (deposite * acc.interestRate) / 100)
     .filter((int, i, array) => {
       // console.log(array);
       return int >= 1;
@@ -106,8 +108,7 @@ const calcDisplaySummary = function (mov) {
     .reduce((acc, mov) => acc + mov, 0);
   labelSumInterest.textContent = `${interest}R$`;
 };
-
-calcDisplaySummary(account1.movements);
+//calcDisplaySummary(account1.movements);
 
 // Aula 151
 // users
@@ -123,6 +124,38 @@ const creatUsernames = function (accs) {
 };
 creatUsernames(accounts);
 // console.log(account1);
+
+//Login -- Event handler
+let currentAccount;
+
+btnLogin.addEventListener('click', function (event) {
+  //Prevent form from submitting -- impede a pagina de recarregar
+  event.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  //optional chaining
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    console.log('login');
+    //Display UI and msg
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 100;
+    //Clear input fields
+    inputLoginPin.value = inputLoginUsername.value = '';
+    inputLoginPin.blur();
+    //Display movements
+    displayMoviments(currentAccount.movements);
+    //Display balance
+    calcDisplayBalance(currentAccount.movements);
+    //Display summary
+    calcDisplaySummary(currentAccount);
+  }
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
