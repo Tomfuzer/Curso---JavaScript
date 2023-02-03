@@ -72,7 +72,7 @@ const displayMoviments = function (mov) {
 
     const html = `<div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov}R$</div>
   </div>;`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html); // parametros de insertAdjacentHTML('aonde colocar', 'o que colocar')
@@ -85,6 +85,29 @@ const calcDisplayBalance = function (mov) {
   labelBalance.textContent = `${balance} BRL`; // inserir a informação no html/webpage
 };
 calcDisplayBalance(account1.movements); // Chamando a função displayBalance
+
+//Função pra inserir os valores do summary, in, out e interest -- Sempre verificar a qual objeto do HTML a função está referenciando, dessa forma é mais fácil compreender o que ela deve mostrar/fazer.
+const calcDisplaySummary = function (mov) {
+  const incomes = mov.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}R$`;
+
+  const outcomes = mov
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}R$`;
+
+  const interest = mov
+    .filter(mov => mov > 0)
+    .map(deposite => (deposite * 1.2) / 100)
+    .filter((int, i, array) => {
+      console.log(array);
+      return int >= 1;
+    })
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumInterest.textContent = `${interest}R$`;
+};
+
+calcDisplaySummary(account1.movements);
 
 // Aula 151
 // users
@@ -383,3 +406,16 @@ console.log(avgAge([36, 32, 76, 48, 28]));
 */
 
 // Aula 155 -
+/*
+//Pipeline de métodos
+const brlToUsd = 1 / 5.13;
+const depositeUSD = account1.movements
+  .filter(mov => mov > 0)
+  .map((mov, i, array) => {
+    // console.log(array);
+    return mov * brlToUsd;
+  })
+  // .map(mov) => mov * brlToUsd)
+  .reduce((acc, mov) => acc + mov);
+console.log(depositeUSD);
+*/
