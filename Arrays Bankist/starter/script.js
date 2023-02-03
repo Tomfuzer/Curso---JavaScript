@@ -445,3 +445,16 @@ console.log(calcHumanAge(data2));
 */
 
 // Aula 157 -
+/*
+//Lembrando: Arrays methods aceitam callback functions e loop over the array. Até o momento a maioria que vimos retornam outro array, entretanto alguns retornam outras coisas como valores único, por exemplo o .reduce
+//Find retorna apenas o primeiro valor para qual a condição é verdadeira =! filter retorna todos para qual a condição é atendida -- filter retorna array, find retorna um valor
+const firstWithdrawal = account1.movements.find(mov => mov < 0);
+console.log(account1.movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+*/
+
+// Aula 158 --
