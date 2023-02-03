@@ -100,7 +100,7 @@ const calcDisplaySummary = function (mov) {
     .filter(mov => mov > 0)
     .map(deposite => (deposite * 1.2) / 100)
     .filter((int, i, array) => {
-      console.log(array);
+      // console.log(array);
       return int >= 1;
     })
     .reduce((acc, mov) => acc + mov, 0);
@@ -419,3 +419,29 @@ const depositeUSD = account1.movements
   .reduce((acc, mov) => acc + mov);
 console.log(depositeUSD);
 */
+
+// Aula 156 - Challenge #3
+/*
+const data1 = [5, 2, 4, 1, 15, 8, 3];
+const data2 = [16, 6, 10, 5, 6, 1, 4];
+
+function calcHumanAge(ages) {
+  const humanAge = ages
+    .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
+    .filter(function (age, i, arr) {
+      console.log(arr);
+      return age >= 18;
+    })
+    .reduce(function (acc, age, i, arr) {
+      const avg = acc + age / arr.length;
+      return avg;
+    }, 0);
+
+  return humanAge;
+}
+
+console.log(calcHumanAge(data1));
+console.log(calcHumanAge(data2));
+*/
+
+// Aula 157 -
