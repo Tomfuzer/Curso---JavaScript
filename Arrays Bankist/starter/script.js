@@ -125,7 +125,6 @@ const creatUsernames = function (accs) {
   });
 };
 creatUsernames(accounts);
-// console.log(account1);
 
 // Update Ui
 const updateUi = function (acc) {
@@ -210,6 +209,25 @@ btnClose.addEventListener('click', function (e) {
     console.log('Credênciais inválidas');
   }
   inputCloseUsername.value = inputClosePin.value = '';
+});
+
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement / add money requested
+    currentAccount.movements.push(amount);
+    // Update UI
+    updateUi(currentAccount);
+
+    inputLoanAmount.value = '';
+    alert('Valor crédito automaticamente na sua conta.');
+  } else {
+    alert(
+      'O valor solicitado é maior do que sua faixa de crédito, tente valores menores.'
+    );
+  }
 });
 
 /////////////////////////////////////////////////
@@ -546,3 +564,24 @@ console.log(account);
 */
 
 // Aula 158 --
+
+// Aula 161
+
+/*
+// EQUALITY
+console.log(account1.movements);
+console.log(account1.movements.includes(-130));
+
+// CONDITION
+const anyDeposite = account1.movements.some(mov => mov > 1500);
+console.log(anyDeposite);
+
+// EVERY
+console.log(account4.movements.every(mov => mov > 0));
+
+// Callback separado
+const deposit = mov => mov > 0;
+console.log(account2.movements.some(deposit));
+console.log(account2.movements.every(deposit));
+console.log(account2.movements.includes(deposit));
+*/
