@@ -79,11 +79,13 @@ const displayMoviments = function (mov) {
   });
 };
 //displayMoviments(account1.movements); // chamou a função displayMoviments que fez a inserção no HTML com as informações específicas da account1
+
 //Balanço - calcular e exibir
 const calcDisplayBalance = function (account) {
   account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${account.balance} BRL`; // inserir a informação no html/webpage
 };
+
 //calcDisplayBalance(account1.movements); // Chamando a função displayBalance
 
 //Função pra inserir os valores do summary, in, out e interest -- Sempre verificar a qual objeto do HTML a função está referenciando, dessa forma é mais fácil compreender o que ela deve mostrar/fazer.
@@ -134,7 +136,7 @@ const updateUi = function (acc) {
   calcDisplaySummary(acc);
 };
 
-//Login -- Event handler
+// Login -- Events handler
 let currentAccount;
 
 btnLogin.addEventListener('click', function (event) {
@@ -162,7 +164,7 @@ btnLogin.addEventListener('click', function (event) {
   }
 });
 
-//Transfer
+// Transfer
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
@@ -186,6 +188,28 @@ btnTransfer.addEventListener('click', function (e) {
 
     updateUi(currentAccount);
   }
+});
+
+// Close account
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  // console.log('delete!');
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    // console.log(index);
+    accounts.splice(index, 1);
+
+    //Hide UI
+    containerApp.style.opacity = 0;
+  } else {
+    console.log('Credênciais inválidas');
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
 });
 
 /////////////////////////////////////////////////
