@@ -697,3 +697,61 @@ labelBalance.addEventListener('click', function () {
   console.log(movementsUI2);
 });
 */
+
+// Aula 165
+
+/*
+// const arr = [];
+// //Modificam o array original{
+// //adicionam ao original
+// arr.push(); // final
+// arr.unshift(); // inicio
+// //removem do original
+// arr.pop(); //final
+// arr.shift(); //começo
+// arr.splice(); //any
+// //outros
+// arr.reverse();
+// arr.sort();
+// arr.fill();
+// //}
+
+// //Novo array{
+// //Computado pelo array original
+// arr.map(); // loop
+// //Usando condições
+// arr.filter();
+// //Parte do original
+// arr.slice();
+// //Adiciona o original a outro
+// arr.concat();
+// //Flat o original
+// arr.flat();
+// arr.flatMap();
+// //}
+
+// //Array index
+// //Valor base do índice
+// arr.indexOf();
+// //Possui teste de condição
+// arr.findIndex();
+// //Elementos do array
+// //Possui teste de condição
+// arr.find();
+
+// //Descobrir se está contido no array
+// //Pelo valor
+// arr.includes();
+// //Teste de condição, true se algum elemento satisfazer
+// arr.some();
+// //Teste de condição, true se todos os elementos satisfazem a condição
+// arr.every();
+
+// //Nova String
+// arr.join();
+// //Transformar em um valor
+// arr.reduce();
+
+// //Loop over the array
+// arr.forEach();
+*/
