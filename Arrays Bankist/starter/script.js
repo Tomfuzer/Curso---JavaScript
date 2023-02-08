@@ -585,3 +585,36 @@ console.log(account2.movements.some(deposit));
 console.log(account2.movements.every(deposit));
 console.log(account2.movements.includes(deposit));
 */
+
+// Aula 162
+/*
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+//flat() transforma um array de sub arrys em um array simples ou seja, sem subníveis de arrays, o parâmetro flat('para...') define o nível em que queremos descer na transformação
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+// const accountsMovements = accounts.map(acc => acc.movements);
+// console.log(accountsMovements);
+// const allMovements = accountsMovements.flat();
+// console.log(allMovements);
+// const overalBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overalBalance);
+
+//flat
+const overalBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(overalBalance);
+//flatmap
+const overalBalance2 = accounts
+  .flatMap(acc => acc.movements) //apenas um nível de profundidade
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(overalBalance2);
+*/
+
+// Aula 163
