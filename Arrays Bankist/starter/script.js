@@ -64,10 +64,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //Projeto Banco
 
 //Movimentações - calcular e exibir
-const displayMoviments = function (mov) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
+  //habilitando a função de sort implementando na função displayMovements
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
-  mov.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `<div class="movements__row">
@@ -78,7 +80,7 @@ const displayMoviments = function (mov) {
     containerMovements.insertAdjacentHTML('afterbegin', html); // parametros de insertAdjacentHTML('aonde colocar', 'o que colocar')
   });
 };
-//displayMoviments(account1.movements); // chamou a função displayMoviments que fez a inserção no HTML com as informações específicas da account1
+//displayMovements(account1.movements); // chamou a função displayMovements que fez a inserção no HTML com as informações específicas da account1
 
 //Balanço - calcular e exibir
 const calcDisplayBalance = function (account) {
@@ -128,7 +130,7 @@ creatUsernames(accounts);
 
 // Update Ui
 const updateUi = function (acc) {
-  displayMoviments(acc.movements);
+  displayMovements(acc.movements);
   //Display balance
   calcDisplayBalance(acc);
   //Display summary
@@ -228,6 +230,13 @@ btnLoan.addEventListener('click', function (e) {
       'O valor solicitado é maior do que sua faixa de crédito, tente valores menores.'
     );
   }
+});
+
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 /////////////////////////////////////////////////
@@ -618,3 +627,30 @@ console.log(overalBalance2);
 */
 
 // Aula 163
+
+/*
+//strings
+const owners = ['Tom', 'Rafaela', 'Arthur', 'Bruno'];
+console.log(owners.sort()); // transforma o vetor
+
+console.log(account1.movements);
+//return < 0 A,B (keep order)
+//return > 0 B,A (switch order)
+//ascendente
+// account1.movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+// });
+account1.movements.sort((a, b) => a - b);
+console.log(account1.movements);
+
+//descendente
+// account1.movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (b > a) return 1;
+// });
+account1.movements.sort((a, b) => b - a);
+console.log(account1.movements);3
+*/
+
+//
