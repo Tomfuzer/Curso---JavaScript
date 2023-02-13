@@ -755,3 +755,57 @@ labelBalance.addEventListener('click', function () {
 // //Loop over the array
 // arr.forEach();
 */
+
+// Aula 166
+
+/*
+
+const bankDepositeSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0);
+
+console.log(bankDepositeSum);
+
+const numDeposite1k = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000)
+  .reduce(function (prev, cur, i) {
+    let cont = i + 1;
+    return cont;
+  });
+console.log(numDeposite1k);
+
+const { deposits, withdrawls } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposists += cur) : (sums.withdrawls += cur);
+      sums[cur > 0 ? 'deposits' : 'withdrawls'] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawls: 0 }
+  );
+
+console.log(deposits, withdrawls);
+
+//this is a nice title -> This Is a Nice Tittle
+
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word =>
+      exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1)
+    )
+    .join(' ');
+  return capitalize(titleCase);
+};
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));
+*/
