@@ -356,3 +356,31 @@ console.log(Number('23_000')); // Não funciona
 */
 
 // Aula 174
+/*
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER); // maior valor
+
+console.log(49832198189132165498474984n);
+console.log(BigInt(115233));
+
+//Operations
+console.log(10000n + 10000n);
+
+const huge = 5198132116198198887231n;
+const num = 23;
+
+// console.log(huge * num); //erro!
+console.log(huge * BigInt(num));
+
+//Exceptions
+console.log(20n > 15);
+console.log(20n === 20); //false
+console.log(typeof 20n);
+console.log(20n == 20); //true
+
+console.log(huge + 'Is REALLY big!!!');
+
+//Div
+console.log(10n / 3n);
+console.log(10 / 3);
+*/
