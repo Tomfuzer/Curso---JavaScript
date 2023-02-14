@@ -79,166 +79,176 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
-// Functions
 
+//Projeto Banco
+
+//Movimentações - calcular e exibir
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-
+  //habilitando a função de sort implementando na função displayMovements
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
-    const html = `
-      <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
-        <div class="movements__value">${mov}€</div>
-      </div>
-    `;
+    const html = `<div class="movements__row">
+    <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+        <div class="movements__value">${mov}R$</div>
+  </div>;`;
 
-    containerMovements.insertAdjacentHTML('afterbegin', html);
+    containerMovements.insertAdjacentHTML('afterbegin', html); // parametros de insertAdjacentHTML('aonde colocar', 'o que colocar')
   });
 };
+//displayMovements(account1.movements); // chamou a função displayMovements que fez a inserção no HTML com as informações específicas da account1
 
-const calcDisplayBalance = function (acc) {
-  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+//Balanço - calcular e exibir
+const calcDisplayBalance = function (account) {
+  account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${account.balance} BRL`; // inserir a informação no html/webpage
 };
 
+//calcDisplayBalance(account1.movements); // Chamando a função displayBalance
+
+//Função pra inserir os valores do summary, in, out e interest -- Sempre verificar a qual objeto do HTML a função está referenciando, dessa forma é mais fácil compreender o que ela deve mostrar/fazer.
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes}R$`;
 
-  const out = acc.movements
+  const outcomes = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(outcomes)}R$`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * acc.interestRate) / 100)
-    .filter((int, i, arr) => {
-      // console.log(arr);
+    .map(deposite => (deposite * acc.interestRate) / 100)
+    .filter((int, i, array) => {
+      // console.log(array);
       return int >= 1;
     })
-    .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumInterest.textContent = `${interest}R$`;
 };
+//calcDisplaySummary(account1.movements);
 
-const createUsernames = function (accs) {
+// Aula 151
+// users
+
+const creatUsernames = function (accs) {
   accs.forEach(function (acc) {
-    acc.username = acc.owner
+    acc.username = acc.owner //criou um atributo que não existia
       .toLowerCase()
       .split(' ')
-      .map(name => name[0])
+      .map(name => name[0]) //arrow func
       .join('');
   });
 };
-createUsernames(accounts);
+creatUsernames(accounts);
 
-const updateUI = function (acc) {
-  // Display movements
+// Update Ui
+const updateUi = function (acc) {
   displayMovements(acc.movements);
-
-  // Display balance
+  //Display balance
   calcDisplayBalance(acc);
-
-  // Display summary
+  //Display summary
   calcDisplaySummary(acc);
 };
 
-///////////////////////////////////////
-// Event handlers
+// Login -- Events handler
 let currentAccount;
 
-btnLogin.addEventListener('click', function (e) {
-  // Prevent form from submitting
-  e.preventDefault();
+btnLogin.addEventListener('click', function (event) {
+  //Prevent form from submitting -- impede a pagina de recarregar
+  event.preventDefault();
 
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
-    // Display UI and message
+  //optional chaining
+  if (currentAccount?.pin === +inputLoginPin.value) {
+    console.log('login');
+    //Display UI and msg
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
-
-    // Clear input fields
-    inputLoginUsername.value = inputLoginPin.value = '';
+    //Clear input fields
+    inputLoginPin.value = inputLoginUsername.value = '';
     inputLoginPin.blur();
-
-    // Update UI
-    updateUI(currentAccount);
+    //Display movements
+    updateUi(currentAccount);
   }
 });
 
+// Transfer
+
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
-  const receiverAcc = accounts.find(
+  const amount = +inputTransferAmount.value;
+  const reciverAccount = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
+
   inputTransferAmount.value = inputTransferTo.value = '';
 
   if (
     amount > 0 &&
-    receiverAcc &&
+    reciverAccount &&
     currentAccount.balance >= amount &&
-    receiverAcc?.username !== currentAccount.username
+    reciverAccount?.username !== currentAccount.username
   ) {
-    // Doing the transfer
+    // console.log('Transferência válida');
+    //Executando a operação
     currentAccount.movements.push(-amount);
-    receiverAcc.movements.push(amount);
+    reciverAccount.movements.push(amount);
 
-    // Update UI
-    updateUI(currentAccount);
+    updateUi(currentAccount);
   }
 });
 
-btnLoan.addEventListener('click', function (e) {
-  e.preventDefault();
-
-  const amount = Number(inputLoanAmount.value);
-
-  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
-
-    // Update UI
-    updateUI(currentAccount);
-  }
-  inputLoanAmount.value = '';
-});
-
+// Close account
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
-
+  // console.log('delete!');
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
     );
-    console.log(index);
-    // .indexOf(23)
-
-    // Delete account
+    // console.log(index);
     accounts.splice(index, 1);
 
-    // Hide UI
+    //Hide UI
     containerApp.style.opacity = 0;
+  } else {
+    console.log('Credênciais inválidas');
   }
-
   inputCloseUsername.value = inputClosePin.value = '';
+});
+
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = +inputLoanAmount.value;
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement / add money requested
+    currentAccount.movements.push(amount);
+    // Update UI
+    updateUi(currentAccount);
+
+    inputLoanAmount.value = '';
+    alert('Valor crédito automaticamente na sua conta.');
+  } else {
+    alert(
+      'O valor solicitado é maior do que sua faixa de crédito, tente valores menores.'
+    );
+  }
 });
 
 let sorted = false;
@@ -247,7 +257,29 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
-
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+// Aula 170
+/*
+console.log(23 === 23.0);
+console.log(0.1 + 0.2 === 0.3); //false JavaScript limitations
+
+console.log(Number.parseInt('30px', 10));
+console.log(Number.parseInt('e23', 10)); //NaN
+
+console.log(Number.parseFloat('2.5rem'));
+console.log(Number.parseInt('2.5rem'));
+
+console.log(Number.isNaN(20));
+console.log(Number.isNaN(+'20X'));
+console.log(Number.isNaN(23 / 0));
+
+//Check if value is number -- Esse eh o bom!
+console.log(Number.isFinite(23 / 0));
+console.log(Number.isFinite('20'));
+
+console.log(Number.isInteger(23));
+console.log(Number.isInteger(23 / 0));
+*/
