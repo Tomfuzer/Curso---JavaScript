@@ -339,3 +339,20 @@ labelBalance.addEventListener('click', function () {
 */
 
 // Aula 173
+/*
+//287.460.000.000
+const diameter = 287_460_000_000;
+console.log(diameter);
+
+const price = 345_99;
+console.log(price);
+
+//Apenas conceito, uma representação diferente mas os valores são os mesmos
+const transferFee = 15_00;
+const transferFee2 = 1_500;
+
+console.log(Number('23000'));
+console.log(Number('23_000')); // Não funciona
+*/
+
+// Aula 174
