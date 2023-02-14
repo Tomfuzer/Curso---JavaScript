@@ -284,8 +284,8 @@ console.log(Number.isInteger(23));
 console.log(Number.isInteger(23 / 0));
 */
 
-//Aula 171
-
+// Aula 171
+/*
 console.log(Math.sqrt(25));
 console.log(25 ** (1 / 2));
 
@@ -315,3 +315,6 @@ console.log((2.7).toFixed(0)); //toFixed retorna string
 console.log((2.7).toFixed(2));
 console.log((2.7).toFixed(3));
 console.log(+(2.752).toFixed(3));
+*/
+
+// Aula 172
