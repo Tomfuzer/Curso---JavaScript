@@ -93,7 +93,7 @@ const displayMovements = function (movements, sort = false) {
 
     const html = `<div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-        <div class="movements__value">${mov}R$</div>
+        <div class="movements__value">${mov.toFixed(2)}R$</div>
   </div>;`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html); // parametros de insertAdjacentHTML('aonde colocar', 'o que colocar')
@@ -104,7 +104,7 @@ const displayMovements = function (movements, sort = false) {
 //Balanço - calcular e exibir
 const calcDisplayBalance = function (account) {
   account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${account.balance} BRL`; // inserir a informação no html/webpage
+  labelBalance.textContent = `${account.balance.toFixed(2)} BRL`; // inserir a informação no html/webpage
 };
 
 //calcDisplayBalance(account1.movements); // Chamando a função displayBalance
@@ -114,12 +114,12 @@ const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}R$`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}R$`;
 
   const outcomes = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(outcomes)}R$`;
+  labelSumOut.textContent = `${Math.abs(outcomes).toFixed(2)}R$`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -129,7 +129,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumInterest.textContent = `${interest}R$`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}R$`;
 };
 //calcDisplaySummary(account1.movements);
 
@@ -234,7 +234,7 @@ btnClose.addEventListener('click', function (e) {
 
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = +inputLoanAmount.value;
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement / add money requested
@@ -283,3 +283,35 @@ console.log(Number.isFinite('20'));
 console.log(Number.isInteger(23));
 console.log(Number.isInteger(23 / 0));
 */
+
+//Aula 171
+
+console.log(Math.sqrt(25));
+console.log(25 ** (1 / 2));
+
+console.log(Math.max(5, 18, 23, 11, 2));
+console.log(Math.min(5, 18, 23, 11, 2));
+
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+console.log(Math.trunc(Math.random() * 6) + 1);
+
+const randomInt = (min, max) =>
+  Math.trunc(Math.random() * (max - min) + 1) + min;
+
+console.log(randomInt(10, 20));
+
+//Rounding integers
+console.log(Math.trunc(23.3));
+
+//Arredonda pra cima
+console.log(Math.ceil(23.3));
+
+//Arredonda pra baixo
+console.log(Math.floor(23.3));
+
+//Rouding decimals
+console.log((2.7).toFixed(0)); //toFixed retorna string
+console.log((2.7).toFixed(2));
+console.log((2.7).toFixed(3));
+console.log(+(2.752).toFixed(3));
