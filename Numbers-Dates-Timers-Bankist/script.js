@@ -104,6 +104,13 @@ const formatMovementDate = function (date, locale) {
   */
 };
 
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
+};
+
 //Movimentações - calcular e exibir
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
@@ -118,11 +125,13 @@ const displayMovements = function (acc, sort = false) {
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date, acc.locale);
 
+    const formattedMov = formatCur(mov, acc.locale, acc.currency);
+
     const html = `<div class="movements__row">
     <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div><div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}R$</div>
+        <div class="movements__value">${formattedMov}</div>
   </div>;`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html); // parametros de insertAdjacentHTML('aonde colocar', 'o que colocar')
@@ -131,9 +140,9 @@ const displayMovements = function (acc, sort = false) {
 //displayMovements(account1.movements); // chamou a função displayMovements que fez a inserção no HTML com as informações específicas da account1
 
 //Balanço - calcular e exibir
-const calcDisplayBalance = function (account) {
-  account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${account.balance.toFixed(2)} BRL`; // inserir a informação no html/webpage
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = formatCur(acc.balance, acc.locale, acc.currency); // inserir a informação no html/webpage
 };
 
 //calcDisplayBalance(account1.movements); // Chamando a função displayBalance
@@ -143,12 +152,12 @@ const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}R$`;
+  labelSumIn.textContent = formatCur(incomes, acc.locale, acc.currency);
 
   const outcomes = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(outcomes).toFixed(2)}R$`;
+  labelSumOut.textContent = formatCur(outcomes, acc.locale, acc.currency);
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -158,7 +167,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}R$`;
+  labelSumInterest.textContent = formatCur(interest, acc.locale, acc.currency);
 };
 //calcDisplaySummary(account1.movements);
 
@@ -511,4 +520,25 @@ const options = {
 const local = navigator.language;
 
 labelDate.textContent = new Intl.DateTimeFormat(`local`, options).format(now);
+*/
+
+// Aula 179
+
+/*
+const num = 13051995.01;
+
+//style unit, currency e percent
+const options = {
+  style: 'currency',
+  unit: 'mile-per-hour',
+  currency: 'BRL',
+  // useGrouping: false,
+};
+
+// console.log(new Intl.NumberFormat('en-US').format(num));
+// console.log(new Intl.NumberFormat('pt-BR').format(num));
+// console.log(new Intl.NumberFormat('ar-SY').format(num));
+console.log(new Intl.NumberFormat(navigator.language, options).format(num));
+
+// Preciso criar o objeto Intl.NumberFormat... e em seguida chamar a função pra variável que eu quero que seja formatada /\
 */
