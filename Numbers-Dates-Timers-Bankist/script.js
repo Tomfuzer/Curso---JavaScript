@@ -82,12 +82,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 //Projeto Banco
 
-const formatMovementDate = function (date) {
+const formatMovementDate = function (date, locale) {
   const calcDaysPassed = (data1, data2) =>
     Math.round(Math.abs((data2 - data1) / (1000 * 60 * 60 * 24)));
 
   const dayPassed = calcDaysPassed(new Date(), date);
-  console.log(dayPassed);
 
   if (dayPassed === 0) return 'Today';
 
@@ -95,10 +94,14 @@ const formatMovementDate = function (date) {
 
   if (dayPassed <= 7) return `${dayPassed} days ago`;
 
+  return new Intl.DateTimeFormat(locale).format(date);
+
+  /*
   const day = `${date.getDate()}`.padStart(2, 0);
   const month = `${date.getMonth() + 1}`.padStart(2, 0);
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
+  */
 };
 
 //Movimentações - calcular e exibir
@@ -113,7 +116,7 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const date = new Date(acc.movementsDates[i]);
-    const displayDate = formatMovementDate(date);
+    const displayDate = formatMovementDate(date, acc.locale);
 
     const html = `<div class="movements__row">
     <div class="movements__type movements__type--${type}">${
@@ -210,13 +213,20 @@ btnLogin.addEventListener('click', function (event) {
 
     //Create current date and time of login
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hours = `${now.getHours()}`.padStart(2, 0);
-    const min = `${now.getMinutes()}`.padStart(2, 0);
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+      // weekday: 'long',
+    };
+    // const local = navigator.language;
 
-    labelDate.textContent = `${day}/${month}/${year}, ${hours}:${min}`;
+    labelDate.textContent = new Intl.DateTimeFormat(
+      `${currentAccount.locale}`,
+      options
+    ).format(now);
 
     //Clear input fields
     inputLoginPin.value = inputLoginUsername.value = '';
@@ -472,6 +482,7 @@ console.log(future);
 
 // Aula 177
 
+/*
 const future = new Date(2037, 10, 19, 15, 23);
 console.log(+future);
 
@@ -481,5 +492,23 @@ const calcDaysPassed = (data1, data2) =>
 const temp = calcDaysPassed(new Date(2023, 3, 14), new Date(2023, 3, 24));
 
 console.log(temp);
+*/
 
 //moment.js
+
+// Aula 178
+/*
+//Experimentando a API
+const now = new Date();
+const options = {
+  hour: 'numeric',
+  minute: 'numeric',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  weekday: 'long',
+};
+const local = navigator.language;
+
+labelDate.textContent = new Intl.DateTimeFormat(`local`, options).format(now);
+*/
