@@ -22,8 +22,8 @@ const account1 = {
     '2020-04-01T10:17:24.185Z',
     '2020-05-08T14:11:59.604Z',
     '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2023-02-11T23:36:17.929Z',
+    '2023-02-15T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -82,6 +82,25 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 //Projeto Banco
 
+const formatMovementDate = function (date) {
+  const calcDaysPassed = (data1, data2) =>
+    Math.round(Math.abs((data2 - data1) / (1000 * 60 * 60 * 24)));
+
+  const dayPassed = calcDaysPassed(new Date(), date);
+  console.log(dayPassed);
+
+  if (dayPassed === 0) return 'Today';
+
+  if (dayPassed === 1) return 'Yesterday';
+
+  if (dayPassed <= 7) return `${dayPassed} days ago`;
+
+  const day = `${date.getDate()}`.padStart(2, 0);
+  const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 //Movimentações - calcular e exibir
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
@@ -92,11 +111,9 @@ const displayMovements = function (acc, sort = false) {
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    const displayDate = `${day}/${month}/${year}`;
+    const displayDate = formatMovementDate(date);
 
     const html = `<div class="movements__row">
     <div class="movements__type movements__type--${type}">${
@@ -169,9 +186,9 @@ const updateUi = function (acc) {
 let currentAccount;
 
 // Fake always log in
-currentAccount = account1;
-updateUi(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUi(currentAccount);
+// containerApp.style.opacity = 100;
 
 btnLogin.addEventListener('click', function (event) {
   //Prevent form from submitting -- impede a pagina de recarregar
@@ -452,3 +469,17 @@ console.log(future);
 */
 
 // Aula 176
+
+// Aula 177
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(+future);
+
+const calcDaysPassed = (data1, data2) =>
+  (data2 - data1) / (1000 * 60 * 60 * 24);
+
+const temp = calcDaysPassed(new Date(2023, 3, 14), new Date(2023, 3, 24));
+
+console.log(temp);
+
+//moment.js
