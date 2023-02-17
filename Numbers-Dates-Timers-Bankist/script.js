@@ -302,15 +302,17 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement / add money requested
-    currentAccount.movements.push(amount);
-    //Loan date/time
-    currentAccount.movementsDates.push(new Date().toISOString());
-    // Update UI
-    updateUi(currentAccount);
+    setTimeout(function () {
+      // Add movement / add money requested
+      currentAccount.movements.push(amount);
+      //Loan date/time
+      currentAccount.movementsDates.push(new Date().toISOString());
+      // Update UI
+      updateUi(currentAccount);
 
-    inputLoanAmount.value = '';
-    alert('Valor crédito automaticamente na sua conta.');
+      inputLoanAmount.value = '';
+      alert('Valor crédito automaticamente na sua conta.');
+    }, 3000);
   } else {
     alert(
       'O valor solicitado é maior do que sua faixa de crédito, tente valores menores.'
@@ -541,4 +543,20 @@ const options = {
 console.log(new Intl.NumberFormat(navigator.language, options).format(num));
 
 // Preciso criar o objeto Intl.NumberFormat... e em seguida chamar a função pra variável que eu quero que seja formatada /\
+*/
+
+// Aula 180
+
+/*
+// const ingredientes = ['peperoni', 'creamchesse'];
+// const timePizza = setTimeout(
+//   (ing1, ing2) =>
+//     console.log(`Here is your pizza with ${ing1}, and ${ing2} 🍕`),
+//   3000,
+//   ...ingredientes
+// );
+// console.log('Waiting...');
+// if (ingredientes.includes('calabresa')) clearTimeout(timePizza);
+
+// setInterval(function () {}, 1000);
 */
