@@ -202,6 +202,12 @@ let currentAccount;
 // updateUi(currentAccount);
 // containerApp.style.opacity = 100;
 
+const startLogOutTimer = function () {
+  // Set time 5 min
+  // Call every second
+  // In each call show r time to UI
+};
+
 btnLogin.addEventListener('click', function (event) {
   //Prevent form from submitting -- impede a pagina de recarregar
   event.preventDefault();
