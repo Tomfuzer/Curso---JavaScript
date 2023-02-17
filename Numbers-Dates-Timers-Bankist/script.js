@@ -195,7 +195,7 @@ const updateUi = function (acc) {
 };
 
 // Login -- Events handler
-let currentAccount;
+let currentAccount, timer;
 
 // Fake always log in
 // currentAccount = account1;
@@ -203,9 +203,26 @@ let currentAccount;
 // containerApp.style.opacity = 100;
 
 const startLogOutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    // In each call show r time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // When 0 second - logout
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+    time--;
+  };
   // Set time 5 min
+  let time = 60;
   // Call every second
-  // In each call show r time to UI
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
 };
 
 btnLogin.addEventListener('click', function (event) {
@@ -246,6 +263,9 @@ btnLogin.addEventListener('click', function (event) {
     //Clear input fields
     inputLoginPin.value = inputLoginUsername.value = '';
     inputLoginPin.blur();
+    //Start logout time
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
     //Display movements
     updateUi(currentAccount);
   }
@@ -279,6 +299,8 @@ btnTransfer.addEventListener('click', function (e) {
 
     updateUi(currentAccount);
   }
+  clearInterval(timer);
+  timer = startLogOutTimer();
 });
 
 // Close account
@@ -324,6 +346,8 @@ btnLoan.addEventListener('click', function (e) {
       'O valor solicitado é maior do que sua faixa de crédito, tente valores menores.'
     );
   }
+  clearInterval(timer);
+  timer = startLogOutTimer();
 });
 
 let sorted = false;
