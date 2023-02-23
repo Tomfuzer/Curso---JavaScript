@@ -36,19 +36,19 @@ document.addEventListener('keydown', function (e) {
 // Aula 186
 //Selecionando elementos do HTML
 
-console.log(document.documentElement); // Selecionando o HTML como um todo
-console.log(document.head);
-console.log(document.body);
+// console.log(document.documentElement); // Selecionando o HTML como um todo
+// console.log(document.head);
+// console.log(document.body);
 
 const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
-console.log(allSections);
+// console.log(allSections);
 
 document.getElementById('section--1'); //Selecionando elementos -ID
 const allBtns = document.getElementsByTagName('button'); //... por TagName
-console.log(allBtns);
+// console.log(allBtns);
 
-console.log(document.getElementsByClassName('btn'));
+// console.log(document.getElementsByClassName('btn'));
 
 //Criando e inserindo elementos
 //.insertAdjacentHTML
@@ -67,9 +67,58 @@ header.append(message);
 // header.after(message);
 
 //Delete elements
+
 document
   .querySelector('.btn--close--cookie')
   .addEventListener('click', function () {
     // message.remove();
     message.parentElement.removeChild(message); // Old way
   }); //Neste exemplo não precisamos selecionar o elemento message novamete por meio do document.querySelector pois ele já está armazenado numa variável
+
+// Aula 187
+//Styles
+
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+// console.log(message.style.color); //não é possível acessar dessa forma
+// console.log(message.style.backgroundColor); // é possível acessar por ser inline style, nós que criamos via JavaScrit
+
+// console.log(getComputedStyle(message)); // getComputedStyle pra ver o que está inserido no CSS...
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered'); //Para alterar uma propriedade custom é preciso utilizar o setProperty
+
+//Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = 'Bonita e minimalista logo';
+
+//Non-standard
+console.log(logo.designer);
+console.log(logo.getAttribute('designer'));
+logo.setAttribute('company', 'Bankist');
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+//Data attributes
+console.log(logo.dataset.versionNumber);
+
+//Classes
+logo.classList.add('T');
+logo.classList.remove('o');
+logo.classList.toggle('m');
+logo.classList.contains('.');
+
+//Não usar!!!
+logo.className = 'Tom';
