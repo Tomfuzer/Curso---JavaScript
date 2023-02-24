@@ -91,7 +91,7 @@ message.style.width = '120%';
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
-document.documentElement.style.setProperty('--color-primary', 'orangered'); //Para alterar uma propriedade custom é preciso utilizar o setProperty
+// document.documentElement.style.setProperty('--color-primary', 'orangered'); //Para alterar uma propriedade custom é preciso utilizar o setProperty
 
 //Attributes
 const logo = document.querySelector('.nav__logo');
@@ -175,3 +175,33 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 */
 
 // Aula 190 - Bubbling and Capturing
+
+//Aula conceitual
+
+// Aula 191 - Event Propagation
+
+// rgb(255,255,255)
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('LINK', e.target, e.currentTarget); //e.target aonde o evento aconteceu!
+  //Stop propagation
+  // e.stopPropagation();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('CONTAINER', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('NAV', e.target, e.currentTarget);
+});
+
+// Aula 192 - Event Delegation
