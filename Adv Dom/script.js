@@ -1,13 +1,12 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
+///////////////////////////////////////
+// Modal window
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove('hidden');
@@ -32,6 +31,28 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+// Page Nav
+// 192
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+// 1.Add eventListener to common parent element
+// 2.Determinate what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  //Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+}); // Adicionei um evento ao elemento Pai de todos os elementos que eu queria que tivessem esse evento, por conta do princípio de Bubbling mesmo o trigger sendo num elemento filho o elemento Pai consegue chamar executar o evento, adicionei a lógica do e.target pra direcionar qual elemento filho específico chamou o evento, dessa forma ele vai ser executado "pela" visão deste elemento e não do elemento Pai para todos os elementos filhos
 
 // Aula 186
 //Selecionando elementos do HTML
@@ -115,13 +136,13 @@ const link = document.querySelector('.nav__link--btn');
 // console.log(logo.dataset.versionNumber);
 
 //Classes
-logo.classList.add('T');
-logo.classList.remove('o');
-logo.classList.toggle('m');
-logo.classList.contains('.');
+// logo.classList.add('T');
+// logo.classList.remove('o');
+// logo.classList.toggle('m');
+// logo.classList.contains('.');
 
 //Não usar!!!
-logo.className = 'Tom';
+// logo.className = 'Tom';
 
 // Aula 188 - Smooth Scrolling
 
@@ -179,7 +200,7 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 //Aula conceitual
 
 // Aula 191 - Event Propagation
-
+/*
 // rgb(255,255,255)
 
 const randomInt = (min, max) =>
@@ -203,5 +224,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
   console.log('NAV', e.target, e.currentTarget);
 });
+*/
 
 // Aula 192 - Event Delegation
+// Código escrito lá em cima na parte de Page Navigation
