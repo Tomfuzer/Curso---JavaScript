@@ -156,3 +156,22 @@ btnScrollTo.addEventListener('click', function (e) {
 
   section1.scrollIntoView({ behavior: 'smooth' }); // Versão moderna
 });
+
+// Aula 189 - Events
+/*
+const h1 = document.querySelector('h1');
+
+const alertH1 = function (e) {
+  alert('addEventListener: Working');
+};
+
+// h1.onmouseenter = function (e) {
+//   alert('addEventListener: Working');
+// };
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+*/
+
+// Aula 190 - Bubbling and Capturing
