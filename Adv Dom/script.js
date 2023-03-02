@@ -359,7 +359,7 @@ headerObserver.observe(header);
 
 const revalSection = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
 
   if (!entry.isIntersecting) return;
   entry.target.classList.remove('section--hidden');
@@ -372,7 +372,7 @@ const sectionObserver = new IntersectionObserver(revalSection, {
 });
 allSections.forEach(function (section) {
   sectionObserver.observe(section);
-  section.classList.add('section--hidden');
+  // section.classList.add('section--hidden');
 });
 
 // Aula 199 - Lazy Loading Images (ajuda na performance)
@@ -400,3 +400,47 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+// Aula 200 - Silder Component
+
+const slides = document.querySelectorAll('.slide'); //Atenção no querySelector!
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+let currentSlide = 0;
+const maxSlide = slides.length;
+
+const slider = document.querySelector('.slider');
+slider.style.transform = 'scale(0.5)';
+slider.style.overflow = 'visible';
+
+const goToSlide = function (slide) {
+  slides.forEach(
+    (slide, index) =>
+      (slide.style.transform = `translateX(${100 * (index - currentSlide)}%)`)
+  );
+};
+
+goToSlide(0);
+
+const nextSlide = function () {
+  if (currentSlide === maxSlide - 1) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+  goToSlide(currentSlide);
+};
+
+const prevSlide = function () {
+  if (currentSlide === 0) {
+    currentSlide = maxSlide - 1;
+  } else {
+    currentSlide--;
+  }
+
+  goToSlide(currentSlide);
+};
+
+//Passar para o próximo slide
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', prevSlide);
