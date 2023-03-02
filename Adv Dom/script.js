@@ -375,4 +375,28 @@ allSections.forEach(function (section) {
   section.classList.add('section--hidden');
 });
 
-//
+// Aula 199 - Lazy Loading Images (ajuda na performance)
+
+const imgTargets = document.querySelectorAll('img[data-src]'); //selecionando as imagens que possuem o atributo data-src
+
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) return;
+
+  //replace src with data-src, colocar a imagem com alta resolução
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
