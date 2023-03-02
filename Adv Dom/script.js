@@ -8,6 +8,8 @@ const nav = document.querySelector('.nav');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
 ///////////////////////////////////////
 // Modal window
@@ -149,9 +151,6 @@ const link = document.querySelector('.nav__link--btn');
 // logo.className = 'Tom';
 
 // Aula 188 - Smooth Scrolling
-
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', function (e) {
   // e.preventDefault();
@@ -311,3 +310,15 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+// Aula 196 - Sticky Navigation
+
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+//event scroll fica em window not document
+window.addEventListener('scroll', function () {
+  // console.log(this.window.scrollY);
+  if (this.window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
