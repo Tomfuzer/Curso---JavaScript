@@ -37,5 +37,20 @@ Person.prototype.calcAge = function () {
   console.log(2023 - this.birthYear);
 };
 
-tom.calcAge();
-rafaela.calcAge();
+// tom.calcAge();
+// rafaela.calcAge();
+
+//Object.prototype - topo da cadeia
+console.log(tom.__proto__.__proto__);
+
+const arr = [1, 2, 3, 4, 4, 5];
+console.log(arr.__proto__);
+
+// Aula 211 - Prototypal Inheritance on Built-In Objects
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+}; //retorna um novo array sem elementos repetidos
+
+const h1 = document.querySelector('h1');
+// console.dir(x => x + 1);
