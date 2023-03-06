@@ -31,7 +31,7 @@ const rafaela = new Person('Rafaela', 1997);
 
 // Aula 209 - Prototypes
 
-console.log(Person.prototype);
+// console.log(Person.prototype);
 
 Person.prototype.calcAge = function () {
   console.log(2023 - this.birthYear);
@@ -41,10 +41,10 @@ Person.prototype.calcAge = function () {
 // rafaela.calcAge();
 
 //Object.prototype - topo da cadeia
-console.log(tom.__proto__.__proto__);
+// console.log(tom.__proto__.__proto__);
 
 const arr = [1, 2, 3, 4, 4, 5];
-console.log(arr.__proto__);
+// console.log(arr.__proto__);
 
 // Aula 211 - Prototypal Inheritance on Built-In Objects
 
@@ -54,3 +54,36 @@ Array.prototype.unique = function () {
 
 const h1 = document.querySelector('h1');
 // console.dir(x => x + 1);
+
+// 212 - Coding Challenge #1
+
+const Car = function (maker, speed) {
+  this.maker = maker;
+  this.speed = speed;
+};
+
+const bmw = new Car('BMW', 90);
+const mercedes = new Car('Mercedes', 80);
+
+console.log(bmw, mercedes);
+
+Car.prototype.accelerate = function () {
+  this.speed = this.speed + 10;
+  console.log(this.speed);
+};
+
+Car.prototype.brake = function () {
+  this.speed = this.speed - 5;
+  console.log(this.speed);
+};
+
+while (bmw.speed < 120) {
+  bmw.accelerate();
+}
+
+while (mercedes.speed < 95) {
+  mercedes.accelerate();
+  if (mercedes.speed > 95) {
+    mercedes.brake();
+  }
+}
