@@ -56,7 +56,7 @@ const h1 = document.querySelector('h1');
 // console.dir(x => x + 1);
 
 // 212 - Coding Challenge #1
-
+/*
 const Car = function (maker, speed) {
   this.maker = maker;
   this.speed = speed;
@@ -86,4 +86,30 @@ while (mercedes.speed < 95) {
   if (mercedes.speed > 95) {
     mercedes.brake();
   }
+}*/
+
+// Aula 213 - ES6 Classes
+
+// class expression
+// const PersonCl = class {}
+
+// class declaration
+class PerosnCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  // Métodos serão adicionados em .prototype property
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
 }
+
+const arthur = new PerosnCl('Arthur', 2002);
+console.log(arthur);
+arthur.calcAge();
+
+// 1. Classes are NOT hoisted
+// 2. Classes are first-class citizes
+// 3. Classes are executed in strict mode
