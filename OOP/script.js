@@ -335,6 +335,8 @@ denise.introduce();
 denise.calcAge();
 */
 
+// Aula 221 - Inheritance Between "Classes": Object.create
+/*
 const PersonProto = {
   calcAge() {
     console.log(2023 - this.birthYear);
@@ -345,3 +347,21 @@ const PersonProto = {
     this.birthYear = birthYear;
   },
 };
+
+const robson = Object.create(PersonProto);
+
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2000, 'Nutrição');
+jay.introduce();
+jay.calcAge();
+*/
