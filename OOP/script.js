@@ -16,6 +16,10 @@ const Person = function (firstName, birthYear) {
   //   }
 };
 
+Person.prototype.calcAge = function () {
+  console.log(2023 - this.birthYear);
+};
+
 const tom = new Person('Tom', 1995);
 // console.log(tom);
 
@@ -32,10 +36,6 @@ const rafaela = new Person('Rafaela', 1997);
 // Aula 209 - Prototypes
 
 // console.log(Person.prototype);
-
-Person.prototype.calcAge = function () {
-  console.log(2023 - this.birthYear);
-};
 
 // tom.calcAge();
 // rafaela.calcAge();
@@ -216,3 +216,26 @@ ford.speedUS = 90;
 */
 
 //
+// Aula 218 - Inheritance Between "Classes": Constructor Functions
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// linking prototypes
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Mike', 2000, 'Computer Science');
+console.log(mike);
+mike.introduce();
+mike.calcAge();
+
+Student.prototype.constructor = Student;
+
+console.log(mike.__proto__);
+console.dir(Student.prototype.constructor);
