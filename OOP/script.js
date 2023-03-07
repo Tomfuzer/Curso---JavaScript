@@ -369,7 +369,7 @@ jay.calcAge();
 // Aula 222 - Another Class Example
 // Aula 223 - Encapsulation: Protected Properties and Methods
 // Aula 224 - Encapsulation: Private Class Fields and Methods
-
+/*
 //Public field
 //Private fields
 //Public methods
@@ -401,16 +401,19 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   requestLoan(val) {
     if (this._approveLoan(val)) {
       this.deposit(val);
-      console.log('Deposito aprovado');
+      console.log('Empréstimo aprovado');
+      return this;
     }
   }
 
@@ -442,3 +445,70 @@ console.log(acc1.getMovements());
 // console.log(acc1.#pin);
 
 Account.helper();
+
+// Aula 225 -
+
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+*/
+
+// Aula 227 - Coding Challenge #4
+
+class Car {
+  constructor(maker, speed) {
+    this.maker = maker;
+    this.speed = speed;
+  }
+
+  accelerate = function () {
+    this.speed = this.speed + 10;
+    console.log(this.speed);
+  };
+
+  brake = function () {
+    this.speed = this.speed - 5;
+    console.log(this.speed);
+  };
+
+  get speedUS() {
+    return console.log(`Speed in mi/h is ${this.speed / 1.6}`);
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+    console.log(this.speed);
+  }
+}
+
+class EV extends Car {
+  #charge;
+  constructor(maker, speed, bCharge) {
+    super(maker, speed);
+    this.#charge = bCharge;
+  }
+  accelerate = function () {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.maker} is going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }`
+    );
+    return this;
+  };
+
+  brake = function () {
+    this.speed = this.speed - 5;
+    console.log(`${this.maker} is going at ${this.speed} km/h`);
+    return this;
+  };
+
+  chargeBattery = function (chargeTo) {
+    this.#charge = chargeTo;
+    console.log(`Nível de bateria em ${chargeTo}`);
+    return this;
+  };
+}
+
+const rivian = new EV('Rivian', 120, 23);
+
+rivian.accelerate().accelerate().chargeBattery(30).brake().brake();
