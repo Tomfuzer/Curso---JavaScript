@@ -367,36 +367,63 @@ jay.calcAge();
 */
 
 // Aula 222 - Another Class Example
+// Aula 223 - Encapsulation: Protected Properties and Methods
+// Aula 224 - Encapsulation: Private Class Fields and Methods
+
+//Public field
+//Private fields
+//Public methods
+//Private methods
 
 class Account {
+  //1. Public fields (instances)
+  locale = navigator.language;
+
+  //2. Private fields - # for privates
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
-    this.movements = [];
-    this.locale = navigator.language;
+    //protected property
+    this.#pin = pin;
+    // this._movements = [];
+    // this.locale = navigator.language;
 
     console.log(`Obrigado por abrir uma conta, ${owner}`);
   }
-
+  //3. Public methods
   //Public interface  (API)
+  getMovements() {
+    return this.#movements;
+  }
+
   deposit(val) {
-    this.movements.push(val);
+    this.#movements.push(val);
   }
 
   withdraw(val) {
     this.deposit(-val);
   }
 
-  approveLoan(val) {
-    return true;
-  }
-
   requestLoan(val) {
-    if (this.approveLoan(val)) {
+    if (this._approveLoan(val)) {
       this.deposit(val);
       console.log('Deposito aprovado');
     }
+  }
+
+  //4. Private methods
+  // #approveLoan(val) {
+  _approveLoan(val) {
+    return true;
+  }
+
+  static helper() {
+    console.log(
+      'Funções estáticas funcionam apenas dentro da classe em si e não em outras instâncias'
+    );
   }
 }
 
@@ -409,3 +436,9 @@ acc1.withdraw(150);
 acc1.requestLoan(1000);
 
 console.log(acc1);
+console.log(acc1.getMovements());
+
+// console.log(acc1.#movements);
+// console.log(acc1.#pin);
+
+Account.helper();
