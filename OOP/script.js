@@ -156,6 +156,7 @@ account.latest = 50;
 // PerosnCl.hey();
 
 // Aula 216 - Object.create
+/*
 const PersonProto = {
   calcAge() {
     console.log(2023 - this.birthYear);
@@ -176,3 +177,42 @@ steven.calcAge();
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1999);
 sarah.calcAge();
+*/
+
+// Aula 217 - Coding Challenge #2
+
+/*
+class Car {
+  constructor(maker, speed) {
+    this.maker = maker;
+    this.speed = speed;
+  }
+
+  accelerate = function () {
+    this.speed = this.speed + 10;
+    console.log(this.speed);
+  };
+
+  brake = function () {
+    this.speed = this.speed - 5;
+    console.log(this.speed);
+  };
+
+  get speedUS() {
+    return console.log(`Speed in mi/h is ${this.speed / 1.6}`);
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+    console.log(this.speed);
+  }
+}
+
+const ford = new Car('Ford', 120);
+ford.accelerate();
+ford.brake();
+ford.speedUS;
+ford.speedUS = 90;
+*/
+
+//
