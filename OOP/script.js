@@ -95,8 +95,8 @@ while (mercedes.speed < 95) {
 
 // class declaration
 class PerosnCl {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
@@ -104,12 +104,54 @@ class PerosnCl {
   calcAge() {
     console.log(2023 - this.birthYear);
   }
+
+  get age() {
+    return 2023 - this.birthYear;
+  }
+
+  //Rever aula 214
+  set fullName(name) {
+    if (name.includes('')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  // Static method
+  static hey() {
+    console.log('Hey there!');
+  }
 }
 
-const arthur = new PerosnCl('Arthur', 2002);
-console.log(arthur);
-arthur.calcAge();
+const arthur = new PerosnCl('Arthur Cecchetti', 2002);
+// console.log(arthur);
+// arthur.calcAge();
+// console.log(arthur.age);
 
 // 1. Classes are NOT hoisted
 // 2. Classes are first-class citizes
 // 3. Classes are executed in strict mode
+
+// Aula 214 - Setters and Getters
+
+const account = {
+  owner: 'Tom',
+  mov: [200, 300, 530, 1000, -650],
+
+  get latest() {
+    return this.mov.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.mov.push(mov);
+  },
+};
+
+// console.log(account.latest);
+
+account.latest = 50;
+// console.log(account.mov);
+
+PerosnCl.hey();
