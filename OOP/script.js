@@ -94,6 +94,7 @@ while (mercedes.speed < 95) {
 // const PersonCl = class {}
 
 // class declaration
+/*
 class PerosnCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -133,7 +134,7 @@ const arthur = new PerosnCl('Arthur Cecchetti', 2002);
 // 1. Classes are NOT hoisted
 // 2. Classes are first-class citizes
 // 3. Classes are executed in strict mode
-
+*/
 // Aula 214 - Setters and Getters
 
 const account = {
@@ -237,7 +238,7 @@ console.dir(Student.prototype.constructor);
 */
 
 // Aula 219 - Coding Challenge #3
-
+/*
 const Car = function (maker, speed) {
   this.maker = maker;
   this.speed = speed;
@@ -277,3 +278,70 @@ EV.prototype.accelerate = function () {
 console.log(tesla);
 tesla.chargeBattery(100);
 tesla.accelerate();
+*/
+
+// Aula 220 -  Inheritance Between "Classes": ES6 Classes
+/*
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  // Métodos serão adicionados em .prototype property
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
+
+  get age() {
+    return 2023 - this.birthYear;
+  }
+
+  //Rever aula 214
+  set fullName(name) {
+    if (name.includes('')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  // Static method
+  static hey() {
+    console.log('Hey there!');
+  }
+}
+
+const arthur = new PersonCl('Arthur Cecchetti', 2002);
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    //Função super que cria o referencial do this, essa função tem que ver sempre antes
+    super(fullName, birthYear);
+    this.course = course;
+  }
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(`I'm ${2023 - this.birthYear} years old`);
+  }
+}
+
+const denise = new StudentCl('Denise Fuzer', 1974, 'Matemática');
+denise.introduce();
+denise.calcAge();
+*/
+
+const PersonProto = {
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
