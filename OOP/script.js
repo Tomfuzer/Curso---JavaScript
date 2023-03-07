@@ -180,7 +180,6 @@ sarah.calcAge();
 */
 
 // Aula 217 - Coding Challenge #2
-
 /*
 class Car {
   constructor(maker, speed) {
@@ -207,17 +206,13 @@ class Car {
     console.log(this.speed);
   }
 }
-
-const ford = new Car('Ford', 120);
-ford.accelerate();
-ford.brake();
-ford.speedUS;
-ford.speedUS = 90;
 */
+
+// const ford = new Car('Ford', 120);
 
 //
 // Aula 218 - Inheritance Between "Classes": Constructor Functions
-
+/*
 const Student = function (firstName, birthYear, course) {
   Person.call(this, firstName, birthYear);
   this.course = course;
@@ -239,3 +234,46 @@ Student.prototype.constructor = Student;
 
 console.log(mike.__proto__);
 console.dir(Student.prototype.constructor);
+*/
+
+// Aula 219 - Coding Challenge #3
+
+const Car = function (maker, speed) {
+  this.maker = maker;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  this.speed = this.speed + 10;
+  console.log(this.speed);
+};
+
+Car.prototype.brake = function () {
+  this.speed = this.speed - 5;
+  console.log(this.speed);
+};
+
+const EV = function (maker, speed, bCharge) {
+  Car.call(this, maker, speed);
+  this.bCharge = bCharge;
+};
+
+EV.prototype = Object.create(Car.prototype);
+
+const tesla = new EV('Tesla', 120, 23);
+
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.bCharge = chargeTo;
+};
+
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.bCharge--;
+  console.log(
+    `${this.maker} is going at ${this.speed} km/h, with a charge of ${this.bCharge}`
+  );
+};
+
+console.log(tesla);
+tesla.chargeBattery(100);
+tesla.accelerate();
