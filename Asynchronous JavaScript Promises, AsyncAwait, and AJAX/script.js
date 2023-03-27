@@ -153,7 +153,7 @@ console.log(request);
 //     });
 // };
 
-//Aula 253
+//Aula 253/254
 
 const getJSON = function (url, errorMsg = 'Algo deu errado') {
   return fetch(url).then(response => {
