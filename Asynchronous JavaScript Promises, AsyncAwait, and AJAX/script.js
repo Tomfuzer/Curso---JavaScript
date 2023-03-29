@@ -79,7 +79,7 @@ const getCountryData = function (country) {
 
 const renderError = function (msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 const renderCountry = function (data, className = '') {
@@ -98,7 +98,7 @@ const renderCountry = function (data, className = '') {
   </div>
 </article>`;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 // const getCountryAndNeighbour = function (country) {
@@ -284,7 +284,7 @@ const getLocal = function () {
 // whereAmI([19.037, 72.873]);
 // whereAmI([-33.933, 18.474]);
 // btn.addEventListener('click', function () {
-//   getCountryData('brazil');
+//   getCountryData('indonesia');
 // });
 
 // Aula 258 - Event loop in Practice
@@ -339,3 +339,51 @@ const getLocal = function () {
 
 // Promise.resolve('abc').then(x => console.log(x));
 // Promise.reject(new Error('Problema!')).catch(x => console.error(x));
+
+// Aula 260 - Promisifying the Geolocation API
+
+console.log('Recebendo posição');
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// getPosition().then(pos => console.log(pos));
+
+const whereAmI2 = function () {
+  getPosition()
+    .then(pos => {
+      // console.log(pos.coords);
+      const { latitude, longitude } = pos.coords;
+      userCoords = [latitude, longitude];
+
+      return fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${userCoords[0]}&longitude=${userCoords[1]}&localityLanguage=en`
+      );
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Problema com o geocoding ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      // console.log(data);
+      console.log(`You are in ${data.city}, ${data.countryName}`);
+
+      return fetch(`https://restcountries.com/v3.1/name/${data.countryName}`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`País não encontrado (${res.status})`);
+
+      return res.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.error(`${err.message}`));
+};
+
+btn.addEventListener('click', whereAmI2);
