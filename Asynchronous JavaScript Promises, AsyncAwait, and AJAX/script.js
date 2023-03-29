@@ -342,48 +342,100 @@ const getLocal = function () {
 
 // Aula 260 - Promisifying the Geolocation API
 
-console.log('Recebendo posição');
+// console.log('Recebendo posição');
 
-const getPosition = function () {
-  return new Promise(function (resolve, reject) {
-    // navigator.geolocation.getCurrentPosition(
-    //   position => resolve(position),
-    //   err => reject(err)
-    // );
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-};
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve(position),
+//     //   err => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
 
 // getPosition().then(pos => console.log(pos));
 
-const whereAmI2 = function () {
-  getPosition()
-    .then(pos => {
-      // console.log(pos.coords);
-      const { latitude, longitude } = pos.coords;
-      userCoords = [latitude, longitude];
+// const whereAmI2 = function () {
+//   getPosition()
+//     .then(pos => {
+//       // console.log(pos.coords);
+//       const { latitude, longitude } = pos.coords;
+//       userCoords = [latitude, longitude];
 
-      return fetch(
-        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${userCoords[0]}&longitude=${userCoords[1]}&localityLanguage=en`
-      );
-    })
-    .then(res => {
-      if (!res.ok) throw new Error(`Problema com o geocoding ${res.status}`);
-      return res.json();
-    })
-    .then(data => {
-      // console.log(data);
-      console.log(`You are in ${data.city}, ${data.countryName}`);
+//       return fetch(
+//         `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${userCoords[0]}&longitude=${userCoords[1]}&localityLanguage=en`
+//       );
+//     })
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Problema com o geocoding ${res.status}`);
+//       return res.json();
+//     })
+//     .then(data => {
+//       // console.log(data);
+//       console.log(`You are in ${data.city}, ${data.countryName}`);
 
-      return fetch(`https://restcountries.com/v3.1/name/${data.countryName}`);
-    })
-    .then(res => {
-      if (!res.ok) throw new Error(`País não encontrado (${res.status})`);
+//       return fetch(`https://restcountries.com/v3.1/name/${data.countryName}`);
+//     })
+//     .then(res => {
+//       if (!res.ok) throw new Error(`País não encontrado (${res.status})`);
 
-      return res.json();
-    })
-    .then(data => renderCountry(data[0]))
-    .catch(err => console.error(`${err.message}`));
+//       return res.json();
+//     })
+//     .then(data => renderCountry(data[0]))
+//     .catch(err => console.error(`${err.message}`));
+// };
+
+// btn.addEventListener('click', whereAmI2);
+
+//Coding Challenge #2
+/*
+let img;
+const imgPlace = document.getElementsByClassName('images')[0]; //O método getElementsByClassName retorna uma coleção de elementos, mesmo que haja apenas um elemento com a classe especificada. Portanto, é necessário acessar o primeiro elemento da coleção (ou o elemento desejado) antes de chamar o método appendChild.
+// console.log(imgPlace);
+
+const imgPath1 = 'img/img-1.jpg';
+const imgPath2 = 'img/img-2.jpg';
+const imgPath3 = 'img/img-3.jpg';
+
+const creatImage = function (input) {
+  return new Promise(function (resolve, reject) {
+    img = document.createElement('img');
+    img.src = input;
+    // img.onload = function () {
+    //   resolve(img);
+    img.addEventListener('load', function () {
+      imgPlace.appendChild(img);
+      resolve(img);
+    });
+    img.onerror = function () {
+      reject(new Error('Imagem não encontrada'));
+    };
+  });
 };
 
-btn.addEventListener('click', whereAmI2);
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 2000);
+  });
+};
+
+creatImage(imgPath1)
+  .then(() => {
+    console.log('Imagem 1 carregada');
+    return wait(1);
+  })
+  .then(() => {
+    img.setAttribute('style', 'display:none'); //retira a primeira imagem
+    console.log('Passaram 2 segundos');
+    return creatImage(imgPath2);
+  })
+  .then(() => {
+    console.log('Imagem 2 carregada');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('Passaram 2 segundos');
+    img.setAttribute('style', 'display:none');
+  });
+*/
