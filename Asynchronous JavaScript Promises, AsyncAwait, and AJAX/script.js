@@ -440,59 +440,59 @@ creatImage(imgPath1)
   });
 */
 
-const getPosition = function () {
-  return new Promise(function (resolve, reject) {
-    // navigator.geolocation.getCurrentPosition(
-    //   position => resolve(position),
-    //   err => reject(err)
-    // );
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-};
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve(position),
+//     //   err => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
 
-const whereAmI3 = async function () {
-  try {
-    //Geolocation
-    const pos = await getPosition();
-    const { latitude, longitude } = pos.coords;
-    userCoords = [latitude, longitude];
-    //Reverse Geocoding
-    const resGeo = await fetch(
-      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${userCoords[0]}&longitude=${userCoords[1]}&localityLanguage=en`
-    );
-    if (!resGeo.ok) throw new Error('Erro ao receber as informações de local');
-    const dataGeo = await resGeo.json();
+// const whereAmI3 = async function () {
+//   try {
+//     //Geolocation
+//     const pos = await getPosition();
+//     const { latitude, longitude } = pos.coords;
+//     userCoords = [latitude, longitude];
+//     //Reverse Geocoding
+//     const resGeo = await fetch(
+//       `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${userCoords[0]}&longitude=${userCoords[1]}&localityLanguage=en`
+//     );
+//     if (!resGeo.ok) throw new Error('Erro ao receber as informações de local');
+//     const dataGeo = await resGeo.json();
 
-    //Country data
-    const res = await fetch(
-      `https://restcountries.com/v3.1/name/${dataGeo.countryName}`
-    );
-    const data = await res.json();
+//     //Country data
+//     const res = await fetch(
+//       `https://restcountries.com/v3.1/name/${dataGeo.countryName}`
+//     );
+//     const data = await res.json();
 
-    renderCountry(data[0]);
-    return `Você esta em ${dataGeo.city}, ${dataGeo.countryName}`;
-  } catch (err) {
-    console.error(err);
-    renderError(`Algo deu errado${err.message}`);
-  }
-};
-console.log('1: Receber localização');
-// const city = whereAmI3();
-// console.log(city);
-// whereAmI3()
-//   .then(city => console.log(`2: ${city}`))
-//   .catch(err => console.error(`2: ${err.message}`))
-//   .finally(() => console.log('3: Localização recebida'));
+//     renderCountry(data[0]);
+//     return `Você esta em ${dataGeo.city}, ${dataGeo.countryName}`;
+//   } catch (err) {
+//     console.error(err);
+//     renderError(`Algo deu errado${err.message}`);
+//   }
+// };
+// console.log('1: Receber localização');
+// // const city = whereAmI3();
+// // console.log(city);
+// // whereAmI3()
+// //   .then(city => console.log(`2: ${city}`))
+// //   .catch(err => console.error(`2: ${err.message}`))
+// //   .finally(() => console.log('3: Localização recebida'));
 
-(async function () {
-  try {
-    const city = await whereAmI3();
-    console.log(`2: ${city}`);
-  } catch (err) {
-    console.log(`2: ${err.message}`);
-  }
-  console.log('3: Localização recebida');
-})();
+// (async function () {
+//   try {
+//     const city = await whereAmI3();
+//     console.log(`2: ${city}`);
+//   } catch (err) {
+//     console.log(`2: ${err.message}`);
+//   }
+//   console.log('3: Localização recebida');
+// })();
 
 // try {
 //   let y = 1;
@@ -501,3 +501,21 @@ console.log('1: Receber localização');
 // } catch (err) {
 //   alert(err.message);
 // }
+
+const get3Countries = async function (c1, c2, c3) {
+  try {
+    // const [data1] = await getJSON(`https://restcountries.com/v3.1/name/${c1}`);
+    // const [data2] = await getJSON(`https://restcountries.com/v3.1/name/${c2}`);
+    // const [data3] = await getJSON(`https://restcountries.com/v3.1/name/${c3}`);
+    // console.log(data1.capital, data2.capital, data3.capital);
+
+    const data = await Promise.all([
+      getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+    ]);
+    console.log(data.map(d => d[0].capital));
+  } catch (err) {}
+};
+
+get3Countries('brazil', 'portugal', 'italia');
