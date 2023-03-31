@@ -439,3 +439,49 @@ creatImage(imgPath1)
     img.setAttribute('style', 'display:none');
   });
 */
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI3 = async function () {
+  try {
+    //Geolocation
+    const pos = await getPosition();
+    const { latitude, longitude } = pos.coords;
+    userCoords = [latitude, longitude];
+    //Reverse Geocoding
+    const resGeo = await fetch(
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${userCoords[0]}&longitude=${userCoords[1]}&localityLanguage=en`
+    );
+    if (!resGeo.ok) throw new Error('Erro ao receber as informações de local');
+    const dataGeo = await resGeo.json();
+    console.log(dataGeo);
+
+    //Country data
+    const res = await fetch(
+      `https://restcountries.com/v3.1/name/${dataGeo.countryName}`
+    );
+    const data = await res.json();
+    console.log(data);
+    renderCountry(data[0]);
+  } catch (err) {
+    console.error(err);
+    renderError(`Algo deu errado${err.message}`);
+  }
+};
+whereAmI3();
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   x = 3;
+// } catch (err) {
+//   alert(err.message);
+// }
