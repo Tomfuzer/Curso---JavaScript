@@ -462,21 +462,37 @@ const whereAmI3 = async function () {
     );
     if (!resGeo.ok) throw new Error('Erro ao receber as informações de local');
     const dataGeo = await resGeo.json();
-    console.log(dataGeo);
 
     //Country data
     const res = await fetch(
       `https://restcountries.com/v3.1/name/${dataGeo.countryName}`
     );
     const data = await res.json();
-    console.log(data);
+
     renderCountry(data[0]);
+    return `Você esta em ${dataGeo.city}, ${dataGeo.countryName}`;
   } catch (err) {
     console.error(err);
     renderError(`Algo deu errado${err.message}`);
   }
 };
-whereAmI3();
+console.log('1: Receber localização');
+// const city = whereAmI3();
+// console.log(city);
+// whereAmI3()
+//   .then(city => console.log(`2: ${city}`))
+//   .catch(err => console.error(`2: ${err.message}`))
+//   .finally(() => console.log('3: Localização recebida'));
+
+(async function () {
+  try {
+    const city = await whereAmI3();
+    console.log(`2: ${city}`);
+  } catch (err) {
+    console.log(`2: ${err.message}`);
+  }
+  console.log('3: Localização recebida');
+})();
 
 // try {
 //   let y = 1;
